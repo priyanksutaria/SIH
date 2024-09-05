@@ -23,7 +23,7 @@ df2 = pd.read_pickle('df2.pkl')
 cols = df2.columns[:-3]  # Adjust depending on your actual columns
 
 # Example new input data similar to df0
-new_data = [5.45,8.67,3.45,5.34,4.23,9.23,4.56,6.78,7.89,6.12]  # Replace with your new input data
+new_data = [8.78,7.45,5.34,8.45,6.01,4.56,4.01,4.23,6.67,9.23]  # Replace with your new input data
 new_df = pd.DataFrame([new_data], columns=cols)
 
 # Append the new data to df2
