@@ -1,6 +1,6 @@
 O_score,C_score,E_score,A_score,N_score,Numerical Aptitude,Spatial Aptitude,Perceptual Aptitude,Abstract Reasoning,Verbal Reasoning,Career
 5.45,8.67,3.45,5.34,4.23,9.23,4.56,6.78,7.89,6.12,Accountant
-8.78,5.67,4.56,6.45,4.23,5.12,8.45,7.89,6.34,6.01,Graphic Designer
+8.78,5.67,4.56,6.45,4.23,5.12,8.45,7.89,6.34,6.01, Graphic Designer
 6.12,6.78,9.34,7.56,5.01,6.23,4.23,6.45,6.67,8.45,Salesperson
 9.12,8.78,4.23,5.67,4.56,7.89,5.34,6.45,9.34,7.67,Research Scientist
 6.45,7.56,5.67,9.12,4.23,5.34,4.01,6.23,5.78,8.67,Teacher
@@ -62,7 +62,7 @@ O_score,C_score,E_score,A_score,N_score,Numerical Aptitude,Spatial Aptitude,Perc
 6.67,8.45,3.45,6.12,5.23,7.78,3.12,3.78,4.45,7.45,Marketing Analyst
 7.23,7.67,4.23,5.45,4.89,9.23,8.67,6.45,8.12,5.67,Aerospace Engineer
 6.01,7.78,5.23,9.34,6.45,4.67,3.23,3.67,4.34,8.45,Pediatric Nurse
-7.67,6.12,8.78,7.45,6.45,3.45,2.89,3.12,3.67,8.23,Advertising Executive
+7.67,6.12,8.78,7.45,6.45,3.45,2.89,3.12,3.67,8.23,Graphic Designer
 8.89,7.67,4.45,5.12,6.01,5.34,4.01,6.78,8.45,7.45,Wildlife Conservationist
 6.78,8.45,7.34,5.45,6.01,4.67,3.45,3.78,4.23,7.78,IT Project Manager
 7.45,7.12,4.67,8.67,6.34,3.45,2.89,4.45,3.12,6.78,Forestry Technician
