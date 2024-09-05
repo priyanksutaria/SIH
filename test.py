@@ -31,8 +31,7 @@ combined_df = pd.concat([df2[cols], new_df], ignore_index=True)
 
 # Function to perform Agglomerative Clustering
 def doAgglomerative(X, nclust=2):
-    #Prutha's code had affinity instead of metric but affinity is causing error in Kaumudi's code ////CHECK/////
-    model = AgglomerativeClustering(n_clusters=nclust, metric='euclidean', linkage='ward')
+    model = AgglomerativeClustering(n_clusters=nclust, affinity='euclidean', linkage='ward')
     clust_labels1 = model.fit_predict(X)
     return clust_labels1
 
