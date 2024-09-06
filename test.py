@@ -16,6 +16,17 @@ df_resampled = pd.read_pickle('df_resampled.pkl')
 
 # Function to use hardcoded user input
 def get_hardcoded_input():
+    # Hardcoded values for the user input
+    # O_score = 7.5
+    # C_score = 6.8
+    # E_score = 5.4
+    # A_score = 7.2
+    # N_score = 4.9
+    # Numerical_Aptitude = 8.0
+    # Spatial_Aptitude = 6.5
+    # Perceptual_Aptitude = 7.1
+    # Abstract_Reasoning = 8.3
+    # Verbal_Reasoning = 6.7
     
     # Store the input values in a list (or array)
     user_input = np.array([[8.78,5.67,4.56,6.45,4.23,5.12,8.45,7.89,6.34,6.01]])
@@ -33,7 +44,7 @@ def predict_career():
     # Predict the cluster using the trained KMeans model
     predicted_cluster = kmeans.predict(user_input_scaled)[0]
     
-    print(f"\nPredicted Cluster: {predicted_cluster}")
+    #print(f"\nPredicted Cluster: {predicted_cluster}")
     
     # Get the data points belonging to the predicted cluster
     careers_in_cluster = df_resampled[df_resampled['Cluster'] == predicted_cluster]
@@ -58,7 +69,7 @@ def predict_career():
             break
     
     # Print the top 3 distinct careers
-    print("\nTop 3 career recommendations:")
+    print("\nTop 3 career recommendations for you:")
     for career in top_careers:
         print(f"- {career}")
 
