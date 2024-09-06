@@ -1,74 +1,66 @@
-import pickle
-import numpy as np
 import pandas as pd
-from sklearn.cluster import AgglomerativeClustering
+import numpy as np
+import pickle
+from sklearn.preprocessing import StandardScaler
+from scipy.spatial.distance import cdist
 
-# Load KMeans model and centroids
+# Load the saved model, scaler, and resampled dataframe
 with open('kmeans_model.pkl', 'rb') as f:
     kmeans = pickle.load(f)
 
-with open('centroids.pkl', 'rb') as f:
-    centroids = pickle.load(f)
+with open('scaler.pkl', 'rb') as f:
+    scaler = pickle.load(f)
 
-# Load the mappings
-with open('mappings.pkl', 'rb') as f:
-    mappings = pickle.load(f)
-    normal_mapping = mappings['normal_mapping']
-    reverse_mapping = mappings['reverse_mapping']
+# Load the resampled dataframe that contains the career and cluster information
+df_resampled = pd.read_pickle('df_resampled.pkl')
 
-# Load the DataFrame (if saved)
-df2 = pd.read_pickle('df2.pkl')
+# Function to use hardcoded user input
+def get_hardcoded_input():
+    
+    # Store the input values in a list (or array)
+    user_input = np.array([[8.78,5.67,4.56,6.45,4.23,5.12,8.45,7.89,6.34,6.01]])
+    
+    return user_input
 
-# Define the columns used for clustering
-cols = df2.columns[:-3]  # Adjust depending on your actual columns
+# Function to predict the cluster and retrieve top 3 distinct careers based on proximity
+def predict_career():
+    # Use hardcoded user input
+    user_input = get_hardcoded_input()
+    
+    # Scale the input using the same scaler as in training
+    user_input_scaled = scaler.transform(user_input)
+    
+    # Predict the cluster using the trained KMeans model
+    predicted_cluster = kmeans.predict(user_input_scaled)[0]
+    
+    print(f"\nPredicted Cluster: {predicted_cluster}")
+    
+    # Get the data points belonging to the predicted cluster
+    careers_in_cluster = df_resampled[df_resampled['Cluster'] == predicted_cluster]
+    
+    # Calculate distances between the new input and every point in the predicted cluster
+    cluster_points = careers_in_cluster.iloc[:, :-2].values  # Exclude 'Career' and 'Cluster' columns
+    distances = cdist(user_input_scaled, cluster_points, metric='euclidean')[0]
+    
+    # Add distances to the DataFrame
+    careers_in_cluster = careers_in_cluster.copy()
+    careers_in_cluster['Distance'] = distances
+    
+    # Sort the DataFrame by distance
+    careers_in_cluster_sorted = careers_in_cluster.sort_values(by='Distance')
+    
+    # Get 3 distinct careers by removing duplicates
+    top_careers = []
+    for career in careers_in_cluster_sorted['Career']:
+        if career not in top_careers:
+            top_careers.append(career)
+        if len(top_careers) == 3:
+            break
+    
+    # Print the top 3 distinct careers
+    print("\nTop 3 career recommendations:")
+    for career in top_careers:
+        print(f"- {career}")
 
-# Example new input data similar to df0
-new_data = [7.89,9.23,5.01,7.45,6.34,4.78,4.01,4.56,5.67,8.67]  # Replace with your new input data
-new_df = pd.DataFrame([new_data], columns=cols)
-
-# Append the new data to df2
-combined_df = pd.concat([df2[cols], new_df], ignore_index=True)
-
-# Function to perform Agglomerative Clustering
-def doAgglomerative(X, nclust=2):
-    model = AgglomerativeClustering(n_clusters=nclust, affinity='euclidean', linkage='ward')
-    clust_labels1 = model.fit_predict(X)
-    return clust_labels1
-
-# Predict the agglomerative cluster for the combined data
-combined_df['agglomerative'] = doAgglomerative(combined_df, 6)
-
-# Extract the cluster label for the new data (last row in combined_df)
-new_df['agglomerative'] = combined_df['agglomerative'].iloc[-1]
-
-# Calculate distances to the centroids
-def calculate_distances(df, centroids):
-    distances = []
-    for i, row in df.iterrows():
-        centroid = centroids[int(row['agglomerative'])]
-        distance = np.linalg.norm(row[cols].astype('float') - centroid)
-        distances.append(distance)
-    return np.array(distances)
-
-combined_df['distance_to_centroid'] = calculate_distances(combined_df, centroids)
-
-# Map numerical indices back to actual career names using reverse_mapping
-combined_df['Career'] = combined_df['agglomerative'].map(reverse_mapping)
-
-# Filter the DataFrame for the specific cluster and sort by distance to the centroid
-target_cluster = new_df['agglomerative'].iloc[0]
-cluster_careers = combined_df[combined_df['agglomerative'] == target_cluster]
-
-# Remove duplicates based on career name
-cluster_careers = cluster_careers.drop_duplicates(subset=['Career'])
-
-# Sort careers by distance and select the top 3 closest
-top_3_careers = cluster_careers.sort_values(by='distance_to_centroid').head(3)
-
-# Displaying the top 3 careers
-
-for idx, row in top_3_careers.iterrows():
-    career = row['Career']
-    distance = row['distance_to_centroid']
-    print(f"Career : {career:<30}")
-
+# Call the function to run the prediction
+predict_career()
