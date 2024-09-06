@@ -13,7 +13,7 @@ db.init_app(app)
 admin = Admin(app, name='My App Admin', template_mode='bootstrap4')
 # admin.add_view(ModelView(Todo, db.session))
 
-app.register_blueprint(url_bp, url_prefix='/api')
+app.register_blueprint(url_bp, url_prefix='/')
 
 if __name__ == '__main__':
     app.run(debug=True)
