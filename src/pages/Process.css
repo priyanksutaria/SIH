@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f6f8f7; /* Set body background to light blue */
+  }
+  
+  .custom_heading1 {
+    color: #030404;
+    text-align: center;
+    font-size: 40px;
+    width: 100%;
+    margin-bottom: 20px; /* Add margin below the heading */
+    align-items: center;
+  }
+  
+  .custom_heading1 span {
+    color: #21d7ff;
+  }
+  
+  .plain-blue-section {
+  width: 100%;
+  height: 100vh;
+  background-color: #f6f8f7; /* Background of the entire section */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  overflow: hidden;
+  position: relative;
+  gap: 40px; /* Add some space between the heading and the cylinders */
+}
+  
+  .cylinder-container {
+    display: flex; /* Align items horizontally */
+    gap: 60px; /* Increase space between cylinders */
+    padding: 50px;
+    position: relative;
+  }
+  
+  .cylinder {
+    width: 150px; /* Increased width */
+    background-color: #023b48;
+    border-radius: 0 0 75px 75px; /* Adjust border radius for larger cylinder */
+    transform: translateY(-100%); /* Start above the view */
+    opacity: 0;
+    animation: fallDown 0.5s forwards ease-out;
+  }
+  
+  .cylinder-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding-top: 20px; /* Increased padding for spacing */
+  }
+  
+  .cylinder-content .icon {
+    margin-bottom: 20px; /* Increased space below the icon */
+  }
+  
+  @keyframes fallDown {
+    0% {
+      transform: translateY(-100%); /* Start above */
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0); /* Fall into place */
+      opacity: 1;
+    }
+  }
+  

@@ -1,0 +1,83 @@
+.buy_section {
+    text-align: center;
+  }
+  
+  .buy_section p {
+    margin: 25px 0;
+  }
+  
+  .buy_section a {
+    display: inline-block;
+    padding: 12px 65px;
+    background-color: #023b48;
+    border: 1px solid #023b48;
+    color: #ffffff;
+  }
+  
+  .buy_section a:hover {
+    background-color: transparent;
+    color: #023b48;
+  }
+  
+  .client_section .pl-100 {
+    padding-left: 100px;
+  }
+  
+  .client_section .client_container {
+    width: 90%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 auto;
+    border: 1px solid #606060;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 30px 0;
+  }
+
+  .layout_padding {
+    padding: 50px 0;
+  }
+  .layout_padding-bottom{
+    padding-top: 75px;
+  }
+  .client_section .client_container .img_box {
+    width: 200px;
+    margin-left: -100px;
+  }
+  
+  .client_section .client_container .img_box img {
+    min-width: 100%;
+  }
+  
+  .client_section .client_container .detail_box {
+    padding: 0 35px;
+  }
+  
+  .client_section .carousel-indicators li {
+    background-color: #0dc3ff;
+  }
+  
+  .client_section .carousel-indicators .active {
+    background-color: #8c8a8a;
+  }
+
+  @media screen and (max-width : 500px){
+    .client_section .client_container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .client_section .pl-100 {
+      padding-left: 0;
+    }
+  
+    .client_section .client_container .img_box {
+      margin: -150px auto 25px auto;
+    }
+  
+    .client_section .client_container {
+      margin-top: 100px;
+    }
+  }

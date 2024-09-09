@@ -1,0 +1,100 @@
+.App{
+  font-family: "Poppins", sans-serif;
+}
+.custom_heading {
+  color: #030404;
+  padding: auto;
+  text-align: left;
+  font-size: 40px;
+
+}
+.detail_box h6{
+font-size: 18px;
+}
+.custom_heading span {
+  color: #21d7ff;
+}
+.container{
+  font-size: 20px;
+}
+.service_section .row .col-md-4 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.service_section .img_box {
+  width: 110px;
+  height: 110px;
+  border-radius: 100%;
+  background-color: #18d3ff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.service_section .img_box img {
+  width: 45px;
+}
+
+.service_section .detail_box {
+  margin-top: 25px;
+}
+
+.service_section .detail_box h6 {
+  font-weight: bold;
+}
+
+.service_section a {
+  display: inline-block;
+  padding: 12px 25px 12px 25px;
+  background-color: #023b48;
+  border: 1px solid #023b48;
+  color: #ffffff;
+  text-decoration: none;
+  margin-right: 500px;
+  width: 140px;
+  height: 50px;
+  font-size: 16px;
+  font-stretch: normal;
+  align-items: center;
+}
+
+.service_section a:hover {
+  background-color: transparent;
+  color: #023b48;
+}
+
+
+.layout_padding2 {
+  padding: 45px 0;
+}
+@media screen and (max-width : 770px){
+  .custom_heading {
+
+    text-align: center;
+}
+  .service_section a{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+}
+.service_section .row .col-md-4 {
+  width: auto;
+}
+}

@@ -1,0 +1,183 @@
+:root {
+    --black: #131110;
+    --blue-gradient: linear-gradient(97.05deg, #4066ff 3.76%, #2949c6 100%);
+    --orange-gradient: linear-gradient(270deg, #ffb978 0%, #ff922d 100%);
+    --blue: #4066ff;
+    --lightBlue: #eeeeff;
+    --shadow: 0px 23px 21px -8px rgba(136, 160, 255, 0.25);
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .paddings {
+    padding: 1.5rem;
+  }
+  
+  .innerWidth {
+    width: 100%;
+  }
+  
+  .flexCenter {
+    display: flex;
+    row-gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .flexStart {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .flexEnd {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .flexColCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .flexColStart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .flexColEnd {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  
+  .primaryText {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  .blue-text{
+    font-weight: bold;
+    font-size: 2rem;
+    color: #21d7ff;
+  }
+  
+  /* .secondaryText {
+    font-size: 0.9rem;
+  } */
+  .orangeText {
+    color: orange;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .button{
+    font-weight: 500;
+    padding: 0.6rem 1.4rem;
+    color: white;
+    background: var(--blue);
+    border: none;
+    border-radius: 4px;
+    transition: all 300 ease-in; 
+  }
+  .icon{
+    background: #eeeeff;
+  }
+  .button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+.v-container .image-container{
+    border: 8px solid rgb(232 232 232 / 93%);
+}
+
+.v-container>div{
+    flex: 1;
+}
+.v-right{
+    gap: 0.5rem;
+
+}
+.mar-left{
+    margin-left: 2.5rem;
+}
+.mar-right{
+    margin-right: 2.5rem;
+}
+
+.accordion{
+    margin-top: 2rem;
+    border: none;
+    
+}
+.accordionItem{
+    background: white;
+    border: 0.8px solid rgba(128,128,128,0.143);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.accordionItem.expanded{
+    box-shadow: var(--shadow);
+    border-radius: 6px;
+}
+.accordionButton{
+    background: white;
+    padding: 1rem;
+    width: 100%;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.icon{
+    padding: 10px;
+    background: eeeeff;
+    border-radius: 5px;
+}
+.icon svg{
+    fill: var(--blue);
+}
+.accordionButton .primaryText{
+    font-size: 1.1rem;
+}
+@media (max-Width: 1024px) {
+    .v-container{
+        flex-direction: column;
+    }
+    @media (max-Width: 768px) {
+        .accordion .primaryText{
+            font-size: 0.8rem;
+        }
+    }
+}
+@media (min-width: 1536px) {
+    .innerWidth {
+      max-width: 1280px;
+      margin: auto;
+    }
+  }
+  
+  @media (min-width: 640px) {
+    .paddings {
+      padding: 4rem;
+    }
+  }
+  
+  @media (min-width: 1280px), (min-width: 768px) {
+    .paddings {
+      padding: 2rem;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .primaryText {
+      font-size: 1.5rem;
+    }
+    .orangeText {
+      font-size: 1.2rem;
+    }
+  }
