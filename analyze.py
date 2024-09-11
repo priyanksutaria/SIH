@@ -62,7 +62,7 @@ def calculate_speech_rate(transcript, audio_duration):
 
 # Expanded filler words and pauses for verbal reasoning (more common phrases)
 def analyze_filler_words_and_pauses(transcript):
-    hesitations = re.findall(r"\bum\b|\buh\b|\blike\b|\byou know\b|\bso\b|\bbasically\b|\bI mean\b|\bwell\b|\bhmm\b|\bkind of\b", transcript)
+    hesitations = re.findall(r"\bum\b|\buh\b|\blike\b|\byou know\b|\bso\b|\bbasically\b|\bI mean\b|\bwell\b|\bhmm\b|\bkind of\b|\bI guess\b", transcript)
     filler_count = len(hesitations)
     print(f"Filler words count: {filler_count}")
     return filler_count
@@ -105,39 +105,26 @@ def analyze_sentence_complexity(transcript):
     
     return len(filtered_words), conjunction_count
 
-# Expanded logical reasoning and abstract concepts (for abstract reasoning) with lemmatization
+# Updated abstract reasoning concept list with stricter, unique terms
 def analyze_logical_reasoning(transcript):
     # Generalized and lemmatized abstract reasoning concepts
-    abstract_keywords = [
-    "collaborate",   # collaboration, collaborating -> collaborate
-    "synergy",       # No variations needed
-    "problem",       # problematic -> problem
-    "strategy",      # strategies -> strategy
-    "role",          # roles -> role
-    "responsibility",# responsible -> responsibility
-    "think",         # thinking, thought -> think
-    "analyze",       # analysis -> analyze
-    "decide",        # decision, deciding -> decide
-    "team",          # teams -> team
-    "group",         # groups -> group
-    "plan",          # planning -> plan
-    "solution",      # solutions -> solution
-    "goal",          # goals -> goal
-    "improve"   ,
-    "cooporate" ,
-    "communicate"    # improvement, improving -> improve
-]
+    abstract_keywords = {
+        "collaborate", "synergy", "problem", "strategy", "role", "responsibility", 
+        "think", "analyze", "decide", "team", "group", "plan", "solution", 
+        "goal", "improve", "cooperate", "communicate", "leadership", "cohesion"
+    }
     
     words = word_tokenize(transcript)
     lemmatized_words = [lemmatizer.lemmatize(word.lower()) for word in words if word.isalpha()]
 
     # Matching lemmatized words to generalized abstract keywords
-    matches = [word for word in lemmatized_words if word in abstract_keywords]
+    unique_matches = set(word for word in lemmatized_words if word in abstract_keywords)
     
-    print(f"Lemmatized words matched to abstract reasoning concepts: {matches}")
-    return len(matches)
+    print(f"Lemmatized words matched to abstract reasoning concepts: {unique_matches}")
+    return len(unique_matches)
 
-# Function to grade verbal reasoning
+# Function to grade verbal reasoning (stricter version)
+# Function to grade verbal reasoning (stricter version)
 def grade_verbal_reasoning(audio_file, transcript, audio_duration):
     # Analyze filler words, pauses, speech rate, and sentence complexity
     filler_count = analyze_filler_words_and_pauses(transcript)
@@ -146,32 +133,51 @@ def grade_verbal_reasoning(audio_file, transcript, audio_duration):
     
     # Score verbal reasoning out of 10
     verbal_score = 10
-    if filler_count > 12:  # Adjusted for more filler words
-        verbal_score -= 2  # Penalize for excessive filler words
-    if speech_rate < 90 or speech_rate > 180:  # Adjusted for 10th grade students
-        verbal_score -= 1  # Penalize if speech rate is too slow or too fast
-    if conjunction_count < 3:  # Encourage more complex sentence structures
-        verbal_score -= 1  # Penalize for lack of complex sentences
+    
+    # Penalize more for excessive filler words
+    if filler_count > 10:  
+        verbal_score -= 4  # Deduct 4 points for more than 10 filler words
+    
+    # Deduct points if the filtered word count is too low (assuming filtered_words < 50 for 1-minute response)
+    if word_count < 50:
+        verbal_score -= 2  # Deduct 2 points for insufficient filtered word count
+    
+    # Penalize for lack of complex sentence structures (if less than 3 conjunctions)
+    if conjunction_count < 3:
+        verbal_score -= 1.5  # Deduct 1.5 points for insufficient conjunctions
+    
+    # Penalize for speech rate being too slow or too fast
+    if speech_rate < 90 or speech_rate > 180:  
+        verbal_score -= 1.5  # Deduct 1.5 points for inappropriate speech rate
+    
+    # Ensure score is not below 0
+    return max(0, verbal_score)
 
-    return max(0, verbal_score)  # Ensure score is not below 0
-
-# Function to grade abstract reasoning
+# Function to grade abstract reasoning (stricter version)
+# Function to grade abstract reasoning (stricter version)
 def grade_abstract_reasoning(audio_file, transcript):
     # Analyze pitch variation, sentiment, and abstract concepts
     pitch_variation = analyze_pitch_variation(audio_file)
     sentiment_polarity = analyze_sentiment(transcript)
     abstract_concepts = analyze_logical_reasoning(transcript)
 
-    # Score abstract reasoning out of 10
+    # Stricter scoring for abstract reasoning out of 10
     abstract_score = 10
-    if pitch_variation < 80:  # Adjusted to make pitch variation more forgiving
-        abstract_score -= 2  # Penalize for lack of pitch variation
-    if sentiment_polarity < 0:
-        abstract_score -= 1  # Penalize for negative sentiment
-    if abstract_concepts < 3:  # Expecting at least 3 abstract concepts
-        abstract_score -= 2  # Penalize for lack of abstract reasoning
+    
+    # Stricter deduction for lack of pitch variation
+    if pitch_variation < 80:
+        abstract_score -= 2
+    
+    # Deduct for slightly negative or neutral sentiment
+    if sentiment_polarity < 0.3:
+        abstract_score -= 1  # Deduct 1 point for sentiment below 0.3
+    
+    # Deduct heavily for insufficient abstract concepts (expect at least 4 unique concepts)
+    if abstract_concepts < 4:
+        abstract_score -= 4  # Deduct 4 points for missing abstract concepts
 
     return max(0, abstract_score)  # Ensure score is not below 0
+
 
 # Main function to process the audio and get both scores
 def grade_student_response(audio_file):
@@ -197,5 +203,5 @@ def grade_student_response(audio_file):
     return verbal_score, abstract_score
 
 # Example usage
-audio_file = "C:/Users/Rao/Desktop/Maansi/audio/WhatsApp Audio 2024-09-10 at 11.32.50 AM.mp4"
+audio_file = "C:/Users/Rao/Desktop/Maansi/audio/WhatsApp Audio 2024-09-11 at 12.42.13 PM.mp4"
 verbal_score, abstract_score = grade_student_response(audio_file)
