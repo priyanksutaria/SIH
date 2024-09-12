@@ -43,7 +43,7 @@ body {
     border-radius: 0 0 75px 75px; /* Adjust border radius for larger cylinder */
     transform: translateY(-100%); /* Start above the view */
     opacity: 0;
-    animation: fallDown 0.5s forwards ease-out;
+    animation: fallDown 1.5s forwards ease-out;
   }
   
   .cylinder-content {

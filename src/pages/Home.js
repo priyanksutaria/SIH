@@ -4,7 +4,7 @@ import slider from "../assets/images/Slider2.jpg";
 import Process from "./Process";
 import Assesments from "./Assesments";
 import AlumCon from "./AlumCon";
-import Contact from "./Contact";
+
 import Roadmap from "./RoadMap";
 import Simulation from "./Simulation";
 const Home = () => {

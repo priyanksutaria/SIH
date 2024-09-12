@@ -6,7 +6,6 @@ import {
     AccordionItemHeading,
     AccordionItemButton,
     AccordionItemPanel,
-    AccordionItemState
 } from 'react-accessible-accordion';
 import logo from "../assets/images/PathScoutLogo.png"
 import 'react-accessible-accordion/dist/fancy-example.css';

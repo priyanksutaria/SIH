@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: '#f6f8f7';
+  }
+  .dashboard-logo {
+    display: none !important;
+  }
+  
+  .dashboard-container {
+    display: flex;
+  }
+  
+  .drawer {
+    width: 240px;
+    flex-shrink: 0;
+    background-color: #36a9de;
+  }
+  
+  .dashboard-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f0f2f5;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .nested {
+    padding-left: 30px;
+  }
+  

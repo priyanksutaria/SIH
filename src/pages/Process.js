@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 import "./Process.css";
 
 const Process = () => {
@@ -6,27 +6,41 @@ const Process = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const rect = containerRef.current.getBoundingClientRect();
-      if (rect.top < window.innerHeight) {
-        setShowCylinders(true);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          setShowCylinders(true); // Start animation
+          observer.disconnect(); // Stop observing once the animation has started
+        }
+      },
+      {
+        root: null, // Use the viewport as the root
+        rootMargin: '0px 0px -100px 0px', // Trigger before the section is fully in view
+        threshold: 0.1, // Trigger when 10% of the section is in view
+      }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (observer && containerRef.current) {
+        observer.unobserve(containerRef.current); // Clean up observer on unmount
       }
     };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const cylinderHeights = [200, 250, 300, 350, 400]; // Different heights for cylinders
 
   return (
     <div>
-      <div ref={containerRef} className="plain-blue-section">
-      <h2 className="custom_heading1">
-                Identify The <span>Best Career Path </span>For You
-              </h2>
-        <div className="cylinder-container">
+      <div className="plain-blue-section">
+        <h2 className="custom_heading1">
+          Identify The <span>Best Career Path </span>For You
+        </h2>
+        <div className="cylinder-container" ref={containerRef}>
           {cylinderHeights.map((height, index) => (
             <div
               key={index}

@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f7;
+  }
+  
+  .container2 {
+    width: 100%;
+    /* height: 1000px; */
+    display: flex; /* Centering flex container */
+    flex-direction: column; /* Align items in a column */
+    align-items: center; /* Horizontally center children */
+    justify-content: center; /* Vertically center children */
+    text-align: center;
+    position: relative;
+  }
+  
+  .container1 {
+    position: relative;
+    width: 1200px;
+    height: 300px;
+    background-size: cover;
+    border: 1px solid #ddd;
+    overflow: visible;
+    background-image: url('C:/Users/Prathamesh/OneDrive/Desktop/internship-2022-main/src/assets/images/Roadmap.png');
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Adds some space between container1 and the information card */
+  }
+  
+  .person {
+    position: absolute;
+    width: 60px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+  }
+  
+  .person img {
+    width: 60px;
+    height: 100px;
+  }
+  
+  .milestone-info-static {
+    width: 1000px;
+    padding-left: 20px;
+    /* background: #5508b2; */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s;
+  }
+  
+  
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .button1 {
+    margin: 220px 5px 0px 5px;
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button1:hover {
+    background-color: #2980b9;
+  }
+  
+  .button1:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+  }
+  
+  .button1:focus {
+    outline: 2px solid #3498db;
+  }
+  

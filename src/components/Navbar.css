@@ -1,43 +1,63 @@
 .navbar {
-  background-color: #f6f8f7;
+  background: #f6f8f7;
   height: 100px;
   display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1.2rem;
   position: sticky;
   top: 0;
   z-index: 20;
 }
-.Login-btn a {
-  margin-left: 20px;
-  padding: 12px 25px 12px 25px;
-  background-color: #023b48;
-  border: 1px solid #023b48;
-  color: #ffffff;
-  text-decoration: none;
-  width: 140px;
-  height: 50px;
-}
 
-.Login-btn a:hover {
-  background-color: transparent;
-  color: #023b48;
-}
 .nav-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between; /* Space between left, center, and right sections */
   align-items: center;
   width: 100%;
-  height: 80px;
   max-width: 1500px;
-  padding-left: 50px;
-  margin-left: 0px;
+  padding: 0 20px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  flex: 1; /* Takes up space on the left */
+  margin-left: 50px;
+}
+
+.nav-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  align-items: center;
+  flex: 2; /* Center takes up more space for the menu */
+}
+
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 1; /* Takes up space on the right */
+}
+
+.logo-with-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.path-scout-title {
+  font-size: 21.5px;
+  font-weight: 700;
 }
 
 .nav-menu {
   display: flex;
   list-style: none;
   text-align: center;
-  padding-top: 20px;
   column-gap: 1.2rem;
 }
 
@@ -45,32 +65,46 @@
   color: black;
   text-decoration: none;
   padding: 1.5rem 1rem;
-  height: 100%;
   font-size: 20px;
-  padding-top: 100px;
   border-bottom: 3px solid transparent;
-}
-.fa-code {
-  margin-left: 1rem;
 }
 
 .nav-item {
-  line-height: 40px;
+  position: relative;
 }
 
-.nav-item:after {
-  content: "";
+.dropdown-title {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f6f8f7;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 0;
+  margin-top: 7px;
+  list-style: none;
+  text-align: left;
+}
+
+.dropdown-menu.show {
   display: block;
-  height: 3px;
-  width: 0;
-  background: transparent;
-  transition: width 0.7s ease, background-color 0.5s ease;
 }
 
-.nav-item:hover:after {
-  width: 100%;
+.dropdown-link {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 18px;
 }
 
+.dropdown-link:hover {
+  background-color: #ddd;
+}
 
 .nav-icon {
   display: none;
@@ -82,27 +116,16 @@
     flex-direction: column;
     width: 100%;
     gap: 0.2rem;
-    border-top: 1pxsolid #fff;
     position: absolute;
     top: 90px;
     left: -110%;
-    /* opacity: 1; */
     transition: all 0.5s ease;
   }
 
   .nav-menu.active {
-    background: #f6f8f7;
     left: 0px;
     opacity: 1;
     transition: all 0.5s ease;
-  }
-  .nav-item .active {
-    border: none;
-  }
-  .nav-links {
-    padding: 0px;
-    width: 100%;
-    display: table;
   }
 
   .nav-icon {
@@ -115,32 +138,22 @@
     cursor: pointer;
     color: black;
   }
-  .hide{
+
+  .hide {
     display: none;
   }
 }
 
-.logo-wth-text {
+.login-btn {
+  padding: 12px 25px;
+  background-color: #023b48;
+  color: white;
+  border: 1px solid #023b48;
   text-decoration: none;
-  padding-left: 60px;
-  color: black;
-  padding-top: 0px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  font-size: 25px;
-  font-weight: bolder;
-  padding-right: 20px;
-  padding-bottom: 10px;
-}
-.top-portion {
-  min-height: 18px;
-  background-color: black;
+  border-radius: 5px;
 }
 
-.nav-item-1 {
-  text-decoration: none;
-  color: black;
-  font-weight: 1000;
-  font-size: 20px;
+.login-btn:hover {
+  background-color: transparent;
+  color: #023b48;
 }
