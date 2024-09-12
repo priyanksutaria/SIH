@@ -22,7 +22,7 @@ body {
     background-size: cover;
     border: 1px solid #ddd;
     overflow: visible;
-    background-image: url('C:/Users/Prathamesh/OneDrive/Desktop/internship-2022-main/src/assets/images/Roadmap.png');
+    background-image: url('../../assets/images/Roadmap.png');
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -47,7 +47,6 @@ body {
   
   .milestone-info-static {
     width: 1000px;
-    padding-left: 20px;
     /* background: #5508b2; */
     padding: 10px;
     border: 1px solid #ddd;
