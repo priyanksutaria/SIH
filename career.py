@@ -6,7 +6,7 @@ from sklearn.preprocessing import StandardScaler
 import pickle
 
 # Load the CSV file (replace with the actual path to your CSV file)
-df = pd.read_csv(r'C:\Users\Prutha Kulkarni\Desktop\SIH\Data_final.csv')
+df = pd.read_csv(r'C:\Codes\Flask_Codes\SIH\Data_final.csv')
 
 # Define the features (X) and the target (y) (in this case, y is the Career column)
 X = df.iloc[:, :-1]  # All columns except the last (which is 'Career')

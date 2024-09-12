@@ -202,3 +202,7 @@ def grade_student_response(audio_file):
     import os
     os.remove(wav_file)
     return verbal_score, abstract_score
+
+# Example usage
+audio_file = "C:/Users/Rao/Desktop/Maansi/audio/WhatsApp Audio 2024-09-11 at 12.42.13 PM.mp4"
+verbal_score, abstract_score = grade_student_response(audio_file)
