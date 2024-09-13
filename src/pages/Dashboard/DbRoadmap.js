@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './DbRoadmap.css';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -6,6 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import graphicDesignerMilestones from './GraphicDesignerData'; // Import the data
 import Icon from '../../assets/images/RMIcon.png'
+import { AssessmentContext } from '../../context/AssessmentContext';
 const DbRoadmap = () => {
   const [currentMilestone, setCurrentMilestone] = useState(0);
 

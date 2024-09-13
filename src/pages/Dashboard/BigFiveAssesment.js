@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './BigFiveAssesment.css';
 import Question from './Question';
+import { AssessmentContext } from '../../context/AssessmentContext';
 
 const questions = [
   { id: 1, text: "I see myself as someone who is reserved" },
@@ -12,47 +13,47 @@ const questions = [
   { id: 7, text: "I see myself as someone who tends to find fault with others" },
   { id: 8, text: "I see myself as someone who does a thorough job" },
   { id: 9, text: "I see myself as someone who gets nervous easily" },
-  { id: 10, text: "I see myself as someone who has an active imagination" },
-  { id: 11, text: "I see myself as someone who is talkative" },
-  { id: 12, text: "I see myself as someone who can be cold and aloof" },
-  { id: 13, text: "I see myself as someone who perseveres until the task is finished" },
-  { id: 14, text: "I see myself as someone who can be moody" },
-  { id: 15, text: "I see myself as someone who values artistic, aesthetic experiences" },
-  { id: 16, text: "I see myself as someone who prefers work that is routine" },
-  { id: 17, text: "I see myself as someone who is dependable and self-disciplined" },
-  { id: 18, text: "I see myself as someone who tends to worry a lot" },
-  { id: 19, text: "I see myself as someone who is original, comes up with new ideas" },
-  { id: 20, text: "I see myself as someone who is sometimes shy, inhibited" },
-  { id: 21, text: "I see myself as someone who is helpful and unselfish with others" },
-  { id: 22, text: "I see myself as someone who can be somewhat careless" },
-  { id: 23, text: "I see myself as someone who is relaxed, handles stress well" },
-  { id: 24, text: "I see myself as someone who values artistic, aesthetic experiences" },
-  { id: 25, text: "I see myself as someone who does things efficiently" },
-  { id: 26, text: "I see myself as someone who remains calm in tense situations" },
-  { id: 27, text: "I see myself as someone who is inventive" },
-  { id: 28, text: "I see myself as someone who has an assertive personality" },
-  { id: 29, text: "I see myself as someone who tends to find fault with others" },
-  { id: 30, text: "I see myself as someone who does things thoroughly" },
-  { id: 31, text: "I see myself as someone who gets nervous easily" },
-  { id: 32, text: "I see myself as someone who values artistic, aesthetic experiences" },
-  { id: 33, text: "I see myself as someone who avoids difficult problems" },
-  { id: 34, text: "I see myself as someone who is dependable and self-disciplined" },
-  { id: 35, text: "I see myself as someone who tends to be disorganized" },
-  { id: 36, text: "I see myself as someone who values artistic, aesthetic experiences" },
-  { id: 37, text: "I see myself as someone who likes to cooperate with others" },
-  { id: 38, text: "I see myself as someone who is careful in speech and action" },
-  { id: 39, text: "I see myself as someone who is efficient and effective at work" },
-  { id: 40, text: "I see myself as someone who likes to try new experiences" },
-  { id: 41, text: "I see myself as someone who gets stressed out easily" },
-  { id: 42, text: "I see myself as someone who is creative and inventive" },
-  { id: 43, text: "I see myself as someone who is helpful and cooperative" },
-  { id: 44, text: "I see myself as someone who gets things done quickly" },
-  { id: 45, text: "I see myself as someone who stays calm under pressure" },
-  { id: 46, text: "I see myself as someone who likes artistic experiences" },
-  { id: 47, text: "I see myself as someone who avoids new experiences" },
-  { id: 48, text: "I see myself as someone who is thorough in their work" },
-  { id: 49, text: "I see myself as someone who values cooperation with others" },
-  { id: 50, text: "I see myself as someone who is relaxed and handles stress well" },
+  // { id: 10, text: "I see myself as someone who has an active imagination" },
+  // { id: 11, text: "I see myself as someone who is talkative" },
+  // { id: 12, text: "I see myself as someone who can be cold and aloof" },
+  // { id: 13, text: "I see myself as someone who perseveres until the task is finished" },
+  // { id: 14, text: "I see myself as someone who can be moody" },
+  // { id: 15, text: "I see myself as someone who values artistic, aesthetic experiences" },
+  // { id: 16, text: "I see myself as someone who prefers work that is routine" },
+  // { id: 17, text: "I see myself as someone who is dependable and self-disciplined" },
+  // { id: 18, text: "I see myself as someone who tends to worry a lot" },
+  // { id: 19, text: "I see myself as someone who is original, comes up with new ideas" },
+  // { id: 20, text: "I see myself as someone who is sometimes shy, inhibited" },
+  // { id: 21, text: "I see myself as someone who is helpful and unselfish with others" },
+  // { id: 22, text: "I see myself as someone who can be somewhat careless" },
+  // { id: 23, text: "I see myself as someone who is relaxed, handles stress well" },
+  // { id: 24, text: "I see myself as someone who values artistic, aesthetic experiences" },
+  // { id: 25, text: "I see myself as someone who does things efficiently" },
+  // { id: 26, text: "I see myself as someone who remains calm in tense situations" },
+  // { id: 27, text: "I see myself as someone who is inventive" },
+  // { id: 28, text: "I see myself as someone who has an assertive personality" },
+  // { id: 29, text: "I see myself as someone who tends to find fault with others" },
+  // { id: 30, text: "I see myself as someone who does things thoroughly" },
+  // { id: 31, text: "I see myself as someone who gets nervous easily" },
+  // { id: 32, text: "I see myself as someone who values artistic, aesthetic experiences" },
+  // { id: 33, text: "I see myself as someone who avoids difficult problems" },
+  // { id: 34, text: "I see myself as someone who is dependable and self-disciplined" },
+  // { id: 35, text: "I see myself as someone who tends to be disorganized" },
+  // { id: 36, text: "I see myself as someone who values artistic, aesthetic experiences" },
+  // { id: 37, text: "I see myself as someone who likes to cooperate with others" },
+  // { id: 38, text: "I see myself as someone who is careful in speech and action" },
+  // { id: 39, text: "I see myself as someone who is efficient and effective at work" },
+  // { id: 40, text: "I see myself as someone who likes to try new experiences" },
+  // { id: 41, text: "I see myself as someone who gets stressed out easily" },
+  // { id: 42, text: "I see myself as someone who is creative and inventive" },
+  // { id: 43, text: "I see myself as someone who is helpful and cooperative" },
+  // { id: 44, text: "I see myself as someone who gets things done quickly" },
+  // { id: 45, text: "I see myself as someone who stays calm under pressure" },
+  // { id: 46, text: "I see myself as someone who likes artistic experiences" },
+  // { id: 47, text: "I see myself as someone who avoids new experiences" },
+  // { id: 48, text: "I see myself as someone who is thorough in their work" },
+  // { id: 49, text: "I see myself as someone who values cooperation with others" },
+  // { id: 50, text: "I see myself as someone who is relaxed and handles stress well" },
 ];
 
 const QUESTIONS_PER_PAGE = 10;
@@ -60,12 +61,14 @@ const QUESTIONS_PER_PAGE = 10;
 const BigFiveAssesment = ({ onComplete }) => {
   const [answers, setAnswers] = useState({});
   const [currentPage, setCurrentPage] = useState(0);
+  const { updateScore } = useContext(AssessmentContext);
 
   const handleAnswerChange = (questionId, answer) => {
     setAnswers((prevAnswers) => ({
       ...prevAnswers,
       [questionId]: answer,
     }));
+    updateScore(questionId, answer);
   };
 
   const handleNextPage = () => {

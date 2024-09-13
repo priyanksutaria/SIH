@@ -11,7 +11,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Simulation from "./pages/Simulation";
 import AuthPage from "./pages/AuthPage";
-import Dashboard from './pages/Dashboard'
+import Dashboard from './pages/Dashboard';
+import { AssessmentProvider } from "./context/AssessmentContext";
 
 function App() {
   const location = useLocation();
@@ -28,7 +29,14 @@ function App() {
         <Route path="/process" element={<Process />} />
         <Route path="/alumcon" element={<AlumCon />} />
         <Route path="/authpage" element={<AuthPage/>}/>
-        <Route path="/dashboard/*" element={<Dashboard />} />
+        <Route
+          path="/dashboard/*"
+          element={
+            <AssessmentProvider>
+              <Dashboard />
+            </AssessmentProvider>
+          }
+        />
         
       </Routes>
       {!hideNavbarAndFooter && <Footer />}
