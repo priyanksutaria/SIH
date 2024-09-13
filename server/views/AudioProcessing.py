@@ -5,6 +5,7 @@ from sklearn.cluster import AgglomerativeClustering
 import os
 from .analyze import grade_student_response
 from flask import jsonify
+from video_audio import video_to_audio
 
 current=os.getcwd()
 UPLOAD_FOLDER = os.path.join(current,'uploads')
@@ -23,7 +24,10 @@ def AudioProcessing():
     # file.save(os.path.join(UPLOAD_FOLDER, file.filename))
     # file_name = os.path.join(UPLOAD_FOLDER, file.filename)
     #verbal_score, abstract_score = grade_student_response(file_name)
-    verbal_score, abstract_score = grade_student_response(os.path.join(UPLOAD_FOLDER,'WhatsApp Audio 2024-09-10 at 11.32.50 AM.mp4'))
+
+    video_to_audio(os.path.join(UPLOAD_FOLDER,'Video.mp4'))
+
+    verbal_score, abstract_score = grade_student_response(os.path.join(UPLOAD_FOLDER,'Audio.mp3'))
 
     #os.remove(file_name)
     return jsonify({

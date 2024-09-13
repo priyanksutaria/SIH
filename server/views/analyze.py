@@ -32,11 +32,18 @@ def load_audio_with_audioread(audio_file):
         audio_data = np.reshape(audio_data, (-1, n_channels))
         return audio_data, sr
 
-# Convert MP4 to WAV
-def convert_mp4_to_wav(mp4_file, wav_file):
-    audio = AudioSegment.from_file(mp4_file, format="mp4")
+# Convert MP4 and MP3 to WAV
+def convert_to_wav(input_file, wav_file):
+    # Check file extension to determine format
+    if input_file.endswith(".mp4"):
+        audio = AudioSegment.from_file(input_file, format="mp4")
+    elif input_file.endswith(".mp3"):
+        audio = AudioSegment.from_file(input_file, format="mp3")
+    else:
+        raise ValueError("Unsupported file format. Please provide an MP4 or MP3 file.")
+    
     audio.export(wav_file, format="wav")
-    print(f"Converted {mp4_file} to {wav_file}")
+    print(f"Converted {input_file} to {wav_file}")
 
 # Transcribe audio to text
 def transcribe_audio_to_text(audio_file):
@@ -183,7 +190,7 @@ def grade_abstract_reasoning(audio_file, transcript):
 # Main function to process the audio and get both scores
 def grade_student_response(audio_file):
     wav_file = "converted_audio.wav"
-    convert_mp4_to_wav(audio_file, wav_file)
+    convert_to_wav(audio_file, wav_file)
     
     transcript = transcribe_audio_to_text(wav_file)
     if not transcript:
