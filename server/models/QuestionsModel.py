@@ -21,8 +21,3 @@ class NumericQuestions(db.Model):
 
     def __repr__(self):
         return '<%r>' % self.id
-    
-
-
-    
-

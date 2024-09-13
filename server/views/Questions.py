@@ -7,7 +7,8 @@ def getOceanQuestions():
     questions_list = [
         {
             'id': question.id,
-            'question': question.question
+            'question': question.question,
+            'trait': question.trait
         } for question in questions
     ]
 
