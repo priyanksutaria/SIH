@@ -1,6 +1,6 @@
 from flask import request,jsonify
 from models.QuestionsModel import * 
-
+from models.UserModel import *
  
  #scaling formula for 8 questions per personality
 def scaling(raw_score):
@@ -35,6 +35,17 @@ def calculateOCEANScore():     #data to be sent as paramter or what ???
     a_score=scaling(total_a_score)
     n_score=scaling(total_n_score)
 
+    scores = Scores.query.get(data['user_id'])
+
+    if scores:
+        scores.o_ocean = o_score
+        scores.c_ocean = c_score
+        scores.e_ocean = e_score
+        scores.a_ocean = a_score
+        scores.n_ocean = n_score
+
+        db.session.commit()
+
     return jsonify( {
         'Openness': o_score,
         'Conscientiousness': c_score,
@@ -47,11 +58,18 @@ def calculateOCEANScore():     #data to be sent as paramter or what ???
 def calculateNumericScore():
     data=request.get_json()
 
-    total_numeric_score = 0
+    total_numeric_score = 0.0
     for answer in data['answers']:
         question = NumericQuestions.query.get(answer['question_id'])
         if(question.answer == answer['selected_option']):
             total_numeric_score += 1
+
+    scores = Scores.query.get(data['user_id'])
+
+    if scores:
+        scores.numeric = total_numeric_score
+
+        db.session.commit()
     
     return jsonify({
         'Numeric': total_numeric_score
@@ -61,12 +79,40 @@ def calculateNumericScore():
 def calculatePerceptualScore():
     data=request.get_json()
 
-    total_perceptual_score = 0
+    total_perceptual_score = 0.0
     for answer in data['answers']:
         question = PerceptualQuestions.query.get(answer['question_id'])
         if(question.answer == answer['selected_option']):
             total_perceptual_score += 1
+
+    scores = Scores.query.get(data['user_id'])
+
+    if scores:
+        scores.perceptual = total_perceptual_score
+
+        db.session.commit()
     
     return jsonify({
         'Perceptual': total_perceptual_score
+    })
+
+
+def calculateSpatialScore():
+    data=request.get_json()
+
+    total_spatial_score = 0.0
+    for answer in data['answers']:
+        question = SpatialQuestions.query.get(answer['question_id'])
+        if(question.answer == answer['selected_option']):
+            total_spatial_score += 1
+    
+    scores = Scores.query.get(data['user_id'])
+
+    if scores:
+        scores.spatial = total_spatial_score
+
+        db.session.commit()
+    
+    return jsonify({
+        'Spatial': total_spatial_score
     })

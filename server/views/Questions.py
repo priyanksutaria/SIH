@@ -42,3 +42,19 @@ def getPerceptualQuestions():
     ]
 
     return jsonify(questions_list)
+
+
+def getSpatialQuestions():
+    questions = SpatialQuestions.query.all()
+
+    questions_list = [
+        {
+            'id': question.id,
+            'question': question.question,
+            'question_image':question.question_image,
+            'options_image': question.options_image,
+            'answer': question.answer
+        } for question in questions
+    ]
+
+    return jsonify(questions_list)
