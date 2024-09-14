@@ -14,8 +14,10 @@ jobs_bp.route('/JobRecommendations')(getJobRecommendations)
 
 questions_bp.route('/OceanQuestions')(getOceanQuestions)
 questions_bp.route('/NumericQuestions')(getNumericQuestions)
+questions_bp.route('/PerceptualQuestions')(getPerceptualQuestions)
 
 audio_bp.route('/VerbalAbstractTest')(AudioProcessing)
 
 score_bp.route('/OceanScore', methods=['POST'])(calculateOCEANScore)
 score_bp.route('/NumericScore', methods=['POST'])(calculateNumericScore)
+score_bp.route('/PerceptualScore', methods=['POST'])(calculatePerceptualScore)

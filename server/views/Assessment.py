@@ -1,6 +1,6 @@
 from flask import request,jsonify
 from models.QuestionsModel import * 
-from blueprints import ocean_bp
+
  
  #scaling formula for 8 questions per personality
 def scaling(raw_score):
@@ -55,4 +55,18 @@ def calculateNumericScore():
     
     return jsonify({
         'Numeric': total_numeric_score
+    })
+
+
+def calculatePerceptualScore():
+    data=request.get_json()
+
+    total_perceptual_score = 0
+    for answer in data['answers']:
+        question = PerceptualQuestions.query.get(answer['question_id'])
+        if(question.answer == answer['selected_option']):
+            total_perceptual_score += 1
+    
+    return jsonify({
+        'Perceptual': total_perceptual_score
     })

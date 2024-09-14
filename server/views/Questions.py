@@ -27,3 +27,18 @@ def getNumericQuestions():
     ]
 
     return jsonify(questions_list)
+
+def getPerceptualQuestions():
+    questions = PerceptualQuestions.query.all()
+
+    questions_list = [
+        {
+            'id': question.id,
+            'question': question.question,
+            'image':question.image_url,
+            'options': question.options,
+            'answer': question.answer
+        } for question in questions
+    ]
+
+    return jsonify(questions_list)

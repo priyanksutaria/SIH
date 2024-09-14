@@ -16,6 +16,7 @@ with app.app_context():
 admin = Admin(app, name='My App Admin', template_mode='bootstrap4')
 admin.add_view(ModelView(OCEANQuestions, db.session))
 admin.add_view(ModelView(NumericQuestions, db.session))
+admin.add_view(ModelView(PerceptualQuestions,db.session))
 
 app.register_blueprint(jobs_bp, url_prefix='/')
 app.register_blueprint(questions_bp, url_prefix='/')
