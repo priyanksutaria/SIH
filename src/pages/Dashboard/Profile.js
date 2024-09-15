@@ -9,12 +9,12 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const Profile = () => {
   // Sample data for the doughnut chart
   const doughnutData = {
-    labels: ['Personality Test', 'Numerical Test', 'Spatial Test'],
+    labels: ['Personality Test', 'Numerical Test', 'Spatial Test', 'Verbal Reasoning', 'Perceptual Test'],
     datasets: [
       {
-        data: [50, 25, 25], // Percentages for each test, 0 for incomplete tests
-        backgroundColor: ['#36A2EB', '#FF6384', 'transparent'], // Transparent for incomplete tests
-        hoverBackgroundColor: ['#36A2EB', '#FF6384', 'transparent'], // Hover effect on only completed tests
+        data: [20,20,20,20,20], // Percentages for each test, 0 for incomplete tests
+        backgroundColor: ['#36A2EB', '#FF6384', '#56234A', 'transparent', 'transparent'], // Transparent for incomplete tests
+        hoverBackgroundColor: ['#36A2EB', '#FF6384', '#56234A', 'transparent', 'transparent'], // Hover effect on only completed tests
         borderWidth: 1,
       },
     ],
@@ -68,7 +68,7 @@ const Profile = () => {
       <div className="assessment-chart">
         <h2>Assessment Test Completion</h2>
         <Doughnut data={doughnutData} options={doughnutOptions} />
-        <div className="chart-center-text">75% Completed</div>
+        <div className="chart-center-text">60% Completed</div>
         <NavLink to={'dbassesment'}><button className="complete-tests-btn">Complete My Tests</button></NavLink>
       </div>
 

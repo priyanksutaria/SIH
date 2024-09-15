@@ -36,58 +36,31 @@ export default function App() {
           <MDBRow className='mt-3'>
             <MDBCol md='3' lg='4' xl='3' className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>
-                <MDBIcon color='secondary' icon='gem' className='me-3' />
                  Path Scout
               </h6>
               <p>
-                Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit
-                amet, consectetur adipisicing elit.
+                Find Career Paths,
+                <br/>
+                Not Just Jobs.
               </p>
             </MDBCol>
 
-            <MDBCol md='2' lg='2' xl='2' className='mx-auto mb-4'>
-              <h6 className='text-uppercase fw-bold mb-4'>Products</h6>
-              <p>
-                <a href='#!' className='text-reset'>
-                  Angular
-                </a>
-              </p>
-              <p>
-                <a href='#!' className='text-reset'>
-                  React
-                </a>
-              </p>
-              <p>
-                <a href='#!' className='text-reset'>
-                  Vue
-                </a>
-              </p>
-              <p>
-                <a href='#!' className='text-reset'>
-                  Laravel
-                </a>
-              </p>
-            </MDBCol>
+            
 
             <MDBCol md='3' lg='2' xl='2' className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>Useful links</h6>
               <p>
-                <a href='#!' className='text-reset'>
+                <a href='#!' className='text-reset' style={{textDecoration:"none"}}>
                   Pricing
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
+                <a href='#!' className='text-reset' style={{textDecoration:"none"}}>
                   Settings
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                  Orders
-                </a>
-              </p>
-              <p>
-                <a href='#!' className='text-reset'>
+                <a href='#!' className='text-reset' style={{textDecoration:"none"}}>
                   Help
                 </a>
               </p>
@@ -96,18 +69,14 @@ export default function App() {
             <MDBCol md='4' lg='3' xl='3' className='mx-auto mb-md-0 mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
               <p>
-                <MDBIcon color='secondary' icon='home' className='me-2' />
-                New York, NY 10012, US
-              </p>
-              <p>
                 <MDBIcon color='secondary' icon='envelope' className='me-3' />
-                PathScout@gamil.com
+                PathScout@gmail.com
               </p>
               <p>
-                <MDBIcon color='secondary' icon='phone' className='me-3' /> + 01 234 567 88
+                <MDBIcon color='secondary' icon='phone' className='me-3' /> + 91 23456 12388
               </p>
               <p>
-                <MDBIcon color='secondary' icon='print' className='me-3' /> + 01 234 567 89
+                <MDBIcon color='secondary' icon='print' className='me-3' /> + 91 23456 89891
               </p>
             </MDBCol>
           </MDBRow>

@@ -20,9 +20,7 @@ const Home = () => {
               </h1>
               <p>
                 <span>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever
+                At PathScout, we help you explore career options that truly fit who you are. With personalized assessments, step-by-step roadmaps, and hands-on simulations, you’ll discover the paths that align with your strengths and passions. Get the insights you need to make confident career decisions and take your next steps with purpose.
                 </span>
               </p>
               <div className="btn_box">
@@ -51,10 +49,8 @@ const Home = () => {
                 <span>Find Career Paths, Not Just Jobs</span>
               </h1>
               <p>
-                <span>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever
+              <span>
+                At PathScout, we help you explore career options that truly fit who you are. With personalized assessments, step-by-step roadmaps, and hands-on simulations, you’ll discover the paths that align with your strengths and passions. Get the insights you need to make confident career decisions and take your next steps with purpose.
                 </span>
               </p>
               <div className="btn_box">
@@ -83,10 +79,8 @@ const Home = () => {
                 <span>Find Career Paths, Not Just Jobs</span>
               </h1>
               <p>
-                <span>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever
+              <span>
+                At PathScout, we help you explore career options that truly fit who you are. With personalized assessments, step-by-step roadmaps, and hands-on simulations, you’ll discover the paths that align with your strengths and passions. Get the insights you need to make confident career decisions and take your next steps with purpose.
                 </span>
               </p>
               <div className="btn_box">

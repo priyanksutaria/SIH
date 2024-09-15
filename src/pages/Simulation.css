@@ -31,7 +31,6 @@
     justify-content: flex-start;
     align-items: center;
   }
-  
   .flexEnd {
     display: flex;
     justify-content: flex-end;
@@ -94,6 +93,9 @@
   }
 .v-container .image-container{
     border: 8px solid rgb(232 232 232 / 93%);
+}
+.image-container{
+  width: 615px;
 }
 
 .v-container>div{

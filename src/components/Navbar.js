@@ -47,7 +47,7 @@ const Navbar = () => {
                 onMouseEnter={handleDropdownToggle}
                 onMouseLeave={handleDropdownToggle}
               >
-                <span className="nav-links dropdown-title">FEATURES</span>
+                <span className="nav-links dropdown-title">EXPLORE</span>
                 <ul className={dropdown ? "dropdown-menu show" : "dropdown-menu"}>
                   <li>
                     <NavLink
@@ -57,7 +57,7 @@ const Navbar = () => {
                       className="dropdown-link"
                       onClick={handleClick}
                     >
-                      ASSESMENTS
+                      ASSESSMENTS
                     </NavLink>
                   </li>
                   <li>
