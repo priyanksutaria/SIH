@@ -5,7 +5,9 @@ from sklearn.cluster import AgglomerativeClustering
 import os
 from scipy.spatial.distance import cdist
 from .analyze import grade_student_response
-from flask import jsonify
+from models.UserModel import *
+from models.QuestionsModel import *
+from flask import jsonify,request
 
 def getJobRecommendations():
     # Load KMeans model and centroids
@@ -25,7 +27,11 @@ def getJobRecommendations():
 
 
     # Example new input data similar to df0
-    user_input = np.array([[8.78,5.67,4.56,6.45,4.23,5.12,8.45,7.89,6.34,6.01]])  # Replace with your new input data
+    data=request.get_json()
+    scores = Scores.query.get(data['user_id'])
+    user_input=np.array([[scores.o_ocean,scores.c_ocean,scores.e_ocean,scores.a_ocean,scores.n_ocean,scores.numeric,scores.perceptual,scores.spatial,scores.abstract,scores.verbal]])
+
+    #user_input = np.array([[8.78,5.67,4.56,6.45,4.23,5.12,8.45,7.89,6.34,6.01]])  # Replace with your new input data
     user_input_scaled = scaler.transform(user_input)
     
     # Predict the cluster using the trained KMeans model
@@ -46,15 +52,20 @@ def getJobRecommendations():
         
         # Sort the DataFrame by distance
     careers_in_cluster_sorted = careers_in_cluster.sort_values(by='Distance')
+    careers = Top3Careers.query.get(data['user_id'])
         
         # Get 3 distinct careers by removing duplicates
     top_careers = []
     for career in careers_in_cluster_sorted['Career']:
         if career not in top_careers:
             top_careers.append(career)
+
+
         if len(top_careers) == 3:
             break
-        
+    careers.career_1=top_careers[0]
+    careers.career_2=top_careers[1]
+    careers.career_3=top_careers[2]
     
     return jsonify({'top_careers': top_careers})
 

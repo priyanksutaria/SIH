@@ -3,8 +3,10 @@ import numpy as np
 import pandas as pd
 from sklearn.cluster import AgglomerativeClustering
 import os
+from models.QuestionsModel import * 
+from models.UserModel import *
 from .analyze import grade_student_response
-from flask import jsonify
+from flask import jsonify,request
 from video_audio import video_to_audio
 
 current=os.getcwd()
@@ -24,10 +26,21 @@ def AudioProcessing():
     # file.save(os.path.join(UPLOAD_FOLDER, file.filename))
     # file_name = os.path.join(UPLOAD_FOLDER, file.filename)
     #verbal_score, abstract_score = grade_student_response(file_name)
+    data=request.get_json()
 
     video_to_audio(os.path.join(UPLOAD_FOLDER,'Video.mp4'))
+    scores = Scores.query.get(data['user_id'])
+
+    
 
     verbal_score, abstract_score = grade_student_response(os.path.join(UPLOAD_FOLDER,'Audio.mp3'))
+    if scores:
+        scores.abstract = abstract_score
+        scores.verbal=verbal_score
+
+        db.session.commit()
+
+
 
     #os.remove(file_name)
     return jsonify({

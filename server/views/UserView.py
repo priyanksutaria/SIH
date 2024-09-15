@@ -25,8 +25,13 @@ def createUser():
         o_ocean=0.0, c_ocean=0.0, e_ocean=0.0, a_ocean=0.0, n_ocean=0.0,
         numeric=0.0, spatial=0.0, perceptual=0.0, abstract=0.0, verbal=0.0
     )
+    career_path=Top3Careers(
+        user_id=new_user.id,
+        career_1="",career_2="",career_3=""
+              )
     
     db.session.add(new_scores)
+    db.session.add(career_path)
     db.session.commit()
     
     user_data = {

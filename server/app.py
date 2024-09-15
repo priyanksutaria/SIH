@@ -30,6 +30,7 @@ admin.add_view(ModelView(SpatialQuestions, db.session))
 
 admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(Scores, db.session))
+admin.add_view(ModelView(Top3Careers,db.session))
 
 app.register_blueprint(user_bp,url_prefix='/')
 app.register_blueprint(jobs_bp, url_prefix='/')
