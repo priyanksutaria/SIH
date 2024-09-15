@@ -66,6 +66,8 @@ def getJobRecommendations():
     careers.career_1=top_careers[0]
     careers.career_2=top_careers[1]
     careers.career_3=top_careers[2]
+
+    db.session.commit()
     
     return jsonify({'top_careers': top_careers})
 

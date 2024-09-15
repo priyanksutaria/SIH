@@ -32,6 +32,8 @@ class Scores(db.Model):
 
     def __repr__(self):
         return '<%r>' % self.id
+    
+    
 class Top3Careers(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     user_id=db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
