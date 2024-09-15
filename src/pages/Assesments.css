@@ -1,77 +1,83 @@
-.App{
-  font-family: "Poppins", sans-serif;
-}
 .custom_heading {
   color: #030404;
   padding: auto;
   text-align: left;
   font-size: 40px;
+}
 
-}
-.detail_box h6{
-font-size: 18px;
-}
 .custom_heading span {
   color: #21d7ff;
 }
-.container{
+
+/* .container {
   font-size: 20px;
+} */
+
+.content_box p {
+  font-size: 18px;
+  margin-bottom: 20px;
 }
-.service_section .row .col-md-4 {
-  display: -webkit-box;
-  display: -ms-flexbox;
+
+.steps_container {
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  text-align: center;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.service_section .img_box {
-  width: 110px;
-  height: 110px;
-  border-radius: 100%;
-  background-color: #18d3ff;
-  display: -webkit-box;
-  display: -ms-flexbox;
+.step_box {
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 8px;
+  color: white;
+  /* font-size: 18px; */
 }
 
-.service_section .img_box img {
-  width: 45px;
+.step_number {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  background-color: #333;
 }
 
-.service_section .detail_box {
-  margin-top: 25px;
+.step_content h3 {
+  margin-left: 15px;
 }
 
-.service_section .detail_box h6 {
-  font-weight: bold;
+.step1 {
+  background-color: #1abc9c;
+}
+
+.step2 {
+  background-color: #f39c12;
+}
+
+.step3 {
+  background-color: #27ae60;
+}
+
+.step4 {
+  background-color: #8e44ad;
+}
+
+.step5 {
+  background-color: #3498db;
 }
 
 .service_section a {
   display: inline-block;
-  padding: 12px 25px 12px 25px;
+  padding: 12px 25px;
   background-color: #023b48;
   border: 1px solid #023b48;
   color: #ffffff;
   text-decoration: none;
-  margin-right: 500px;
-  width: 140px;
-  height: 50px;
+  margin-top: 20px;
   font-size: 16px;
-  font-stretch: normal;
-  align-items: center;
 }
 
 .service_section a:hover {
@@ -79,22 +85,24 @@ font-size: 18px;
   color: #023b48;
 }
 
-
-.layout_padding2 {
+.layout_padding {
   padding: 45px 0;
 }
-@media screen and (max-width : 770px){
-  .custom_heading {
 
+@media screen and (max-width: 770px) {
+  .custom_heading {
     text-align: center;
-}
-  .service_section a{
+  }
+
+  .service_section a {
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 40px;
-}
-.service_section .row .col-md-4 {
-  width: auto;
-}
+  }
+
+  .steps_container {
+    flex-direction: column;
+    align-items: center;
+  }
 }

@@ -12,18 +12,14 @@ const Roadmap = () => {
             <div className="col-md-6">
               <div className="detail-box">
                 <h2 className="custom_heading">
-                  Deatiled
-                  <span> Roadmap</span>
+                  Personalized 
+                  <span> Career Roadmap</span>
                 </h2>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since theLorem Ipsum is simply dummy
-                  text of the printing and typesetting industry. Lorem Ipsum has
-                  been the industry's standard dummy text ever since the
+                With PathScout, you get a clear, step-by-step roadmap designed just for you. Based on your assessment, we guide you through every stage—from deciding what to focus on after 10th grade and which exams to take after 12th, to picking the perfect college major, earning industry certifications, and even tapping into government benefits. Your career journey becomes simple, achievable, and customized to help you hit every milestone with confidence.
                 </p>
                 <div>
-                  <a href="">About More</a>
+                  <a href="">Know More</a>
                 </div>
               </div>
             </div>

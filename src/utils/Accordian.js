@@ -3,21 +3,21 @@ import { MdAddBox } from "react-icons/md";
 const data = [
   {
     icon: <MdAddBox/>,
-    heading: "Best interest rates on the market",
+    heading: "In-Depth Course Insights",
     detail:
-      "Exercitation in fugiat est ut ad ea cupidatat ut in cupidatat occaecat ut occaecat consequat est minim minim esse tempor laborum consequat esse adipisicing eu reprehenderit enim.",
+      "Explore the key theories and foundational concepts behind the core subjects required for your career, giving you a deep understanding of what lies ahead.",
   },
   {
     icon: <MdAddBox />,
-    heading: "Prevent unstable prices",
+    heading: "Structured Learning Path",
     detail:
-      "Exercitation in fugiat est ut ad ea cupidatat ut in cupidatat occaecat ut occaecat consequat est minim minim esse tempor laborum consequat esse adipisicing eu reprehenderit enim.",
+      "Get a clear breakdown of the essential coursework topics, helping you grasp the theoretical frameworks you’ll need to succeed.",
   },
   {
     icon: <MdAddBox />,
-    heading: "Best price on the market",
+    heading: "Career-Ready Knowledge",
     detail:
-      "Exercitation in fugiat est ut ad ea cupidatat ut in cupidatat occaecat ut occaecat consequat est minim minim esse tempor laborum consequat esse adipisicing eu reprehenderit enim.",
+      "Build a solid foundation by diving into the core academic material for your future career, ensuring you're well-prepared before stepping into advanced studies.",
   },
 ];
 export default data;

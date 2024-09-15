@@ -1,6 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import "./Process.css";
 
+// Importing Material UI icons
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import MapIcon from '@mui/icons-material/Map';
+import SchoolIcon from '@mui/icons-material/School';
+import WorkIcon from '@mui/icons-material/Work';
+
 const Process = () => {
   const [showCylinders, setShowCylinders] = useState(false);
   const containerRef = useRef(null);
@@ -32,6 +39,15 @@ const Process = () => {
     };
   }, []);
 
+  // Array with icons and step data
+  const steps = [
+    { title: "Step 1:", description: "Assessments", icon: <AssessmentIcon /> },
+    { title: "Step 2:", description: "Career Recommendations and Rankings", icon: <TrendingUpIcon /> },
+    { title: "Step 3:", description: "Detailed Career Roadmaps", icon: <MapIcon /> },
+    { title: "Step 4:", description: "Coursework Simulation", icon: <SchoolIcon /> },
+    { title: "Step 5:", description: "Job Simulation", icon: <WorkIcon /> }
+  ];
+
   const cylinderHeights = [200, 250, 300, 350, 400]; // Different heights for cylinders
 
   return (
@@ -41,19 +57,19 @@ const Process = () => {
           Identify The <span>Best Career Path </span>For You
         </h2>
         <div className="cylinder-container" ref={containerRef}>
-          {cylinderHeights.map((height, index) => (
+          {steps.map((step, index) => (
             <div
               key={index}
               className={`cylinder ${showCylinders ? 'animate' : ''}`}
               style={{
-                height: `${height}px`,
-                animationDelay: `${index * 300}ms`,
+                height: `${cylinderHeights[index]}px`,
+                ...(showCylinders && { animationDelay: `${index * 300}ms` }),
               }}
             >
               <div className="cylinder-content">
-                <div className="icon">{/* Insert icon here */}</div>
-                <div className="title">Step {index + 1}</div>
-                <div className="description">Description for step {index + 1}</div>
+                <div className="icon">{step.icon}</div>
+                <div className="title">{step.title}</div>
+                <div className="description">{step.description}</div>
               </div>
             </div>
           ))}

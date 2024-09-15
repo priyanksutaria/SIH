@@ -8,8 +8,17 @@ import Typography from '@mui/material/Typography';
 import BigFiveAssesment from './BigFiveAssesment'; // Import the Big Five Assessment component
 import NumericalAssesment from './NumericalAssesment'; // Import the Numerical Assessment component
 import VerbalReasoning from './VerbalReasoning'; // Import the Verbal Reasoning component
+import PerceptualAssesment from './PerceptualAssesment'; // Import the Perceptual Assessment component
+import SpatialAssesment from './SpatialAssesment'; // Import the Spatial Assessment component
 
-const steps = ['Big Five Personality Assessment', 'Numerical Assessment', 'Verbal Reasoning Assessment'];
+// Updated steps array with the 5 assessments
+const steps = [
+  'Big Five Personality Assessment',
+  'Numerical Assessment',
+  'Verbal Reasoning Assessment',
+  'Perceptual Assessment',
+  'Spatial Assessment',
+];
 
 export default function DbAssesment() {
   const [activeStep, setActiveStep] = useState(0);
@@ -75,7 +84,7 @@ export default function DbAssesment() {
         {allStepsCompleted() ? (
           <React.Fragment>
             <Typography sx={{ mt: 2, mb: 1 }}>
-              All steps completed - you&apos;re finished
+              All steps completed - you're finished
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
               <Box sx={{ flex: '1 1 auto' }} />
@@ -84,15 +93,12 @@ export default function DbAssesment() {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            {activeStep === 0 && (
-              <BigFiveAssesment onComplete={handleComplete} />
-            )}
-            {activeStep === 1 && (
-              <NumericalAssesment onComplete={handleComplete} />
-            )}
-            {activeStep === 2 && (
-              <VerbalReasoning onComplete={handleComplete} />
-            )}
+            {activeStep === 0 && <BigFiveAssesment onComplete={handleComplete} />}
+            {activeStep === 1 && <NumericalAssesment onComplete={handleComplete} />}
+            {activeStep === 2 && <VerbalReasoning onComplete={handleComplete} />}
+            {activeStep === 3 && <PerceptualAssesment onComplete={handleComplete} />}
+            {activeStep === 4 && <SpatialAssesment onComplete={handleComplete} />}
+            
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
               <Button
                 color="inherit"
@@ -108,13 +114,13 @@ export default function DbAssesment() {
                   <Button onClick={handleNext} sx={{ mr: 1 }}>
                     Next
                   </Button>
-                  {activeStep > 0 && (
+                  
                     <Button onClick={handleComplete}>
                       {completedSteps() === totalSteps() - 1
                         ? 'Finish'
                         : 'Complete Step'}
                     </Button>
-                  )}
+                  
                 </>
               )}
             </Box>

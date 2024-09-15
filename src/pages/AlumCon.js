@@ -2,6 +2,9 @@ import React from "react";
 import "./AlumCon.css";
 import client from "../assets/images/client.jpg";
 import Carousel from "react-bootstrap/Carousel";
+import { NavLink } from "react-router-dom";
+import Alum1 from '../assets/images/Alum1.png'
+import Alum2 from '../assets/images/Alum2.png'
 const AlumCon = () => {
   return (
     <>
@@ -12,8 +15,7 @@ const AlumCon = () => {
             <span> Connect </span>
           </h2>
           <p className="text-center">
-            orem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut la
+          Through our Alum Connect feature, you can network with professionals who have successfully navigated their career paths. Get advice, insights, and mentorship from those who have been in your shoes and are now thriving in industries you aspire to join.
           </p>
           <Carousel interval={3000}>
             <Carousel.Item>
@@ -22,17 +24,12 @@ const AlumCon = () => {
                   <div className="layout_padding2 pl-100">
                     <div className="client_container ">
                       <div className="img_box">
-                        <img src={client} alt="" />
+                        <img src={Alum1} width={"210px"} alt="" />
                       </div>
                       <div className="detail_box">
-                        <h5>Sandy Mark</h5>
+                        <h5>Shaun Mathews</h5>
                         <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua. Ut enim ad minim veniam, quis
-                          nostrud exercitation ullamco laboris nisi ut aliquip
-                          ex ea commodo consequat. Duis aute irure dolor in
-                          reprehenderit in voluptate velit esse cillum dolore
+                        Started his career as a junior frontend developer after earning a degree in Computer Science. He worked with HTML, CSS, and JavaScript to build interactive websites. Over time, he mastered React and Angular, gaining recognition for his user-friendly designs. Now, John leads a team of developers, focusing on responsive design and ensuring cross-platform compatibility.
                         </p>
                       </div>
                     </div>
@@ -51,12 +48,7 @@ const AlumCon = () => {
                       <div className="detail_box">
                         <h5>Sandy Mark</h5>
                         <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua. Ut enim ad minim veniam, quis
-                          nostrud exercitation ullamco laboris nisi ut aliquip
-                          ex ea commodo consequat. Duis aute irure dolor in
-                          reprehenderit in voluptate velit esse cillum dolore
+                        A passionate graphic designer, began with a background in Fine Arts. Her expertise in Adobe Illustrator and Photoshop helped her land her first job in a creative agency. She works on logos, brand identity, and digital media. Emma's ability to balance creativity with client needs has made her a sought-after freelancer.
                         </p>
                       </div>
                     </div>
@@ -70,17 +62,12 @@ const AlumCon = () => {
                   <div className="layout_padding2 pl-100">
                     <div className="client_container ">
                       <div className="img_box">
-                        <img src={client} alt="" />
+                        <img src={Alum2} width={"210px"} alt="" />
                       </div>
                       <div className="detail_box">
-                        <h5>Sandy Mark</h5>
+                        <h5>Liam Livingstone</h5>
                         <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua. Ut enim ad minim veniam, quis
-                          nostrud exercitation ullamco laboris nisi ut aliquip
-                          ex ea commodo consequat. Duis aute irure dolor in
-                          reprehenderit in voluptate velit esse cillum dolore
+                        Pursued painting after studying at an art school. He started with landscapes but gradually transitioned into abstract art, using vibrant colors and textures. His work has been exhibited in local galleries, and he's now commissioned for private and corporate collections, balancing artistic freedom with commercial projects.
                         </p>
                       </div>
                     </div>
@@ -93,16 +80,15 @@ const AlumCon = () => {
       </section>
       <section className="buy_section layout_padding">
         <div className="container">
-          <h2>Loreum Ipsum</h2>
+          <h2>Let's Get Started</h2>
           <p>
-            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip
+          Sign up now to take control of your career journey.
+          Discover personalized guidance and opportunities!
           </p>
           <div className="d-flex justify-content-center">
-            <a href="" style={{ textDecoration: "none" }}>
+            <NavLink to={"/authpage"} style={{ textDecoration: "none" }}>
               Sign Up
-            </a>
+            </NavLink>
           </div>
         </div>
       </section>
