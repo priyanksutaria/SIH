@@ -1,85 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
 .daily-task-screen {
     position: fixed;
     top: 50;
     left: 50;
     width: 80%;
     height: 90%;
+    background-color: #f0f0f0;
+    overflow: hidden;
+  }
+  
+  .design-app {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+  }
+  
+  .main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+  .asset-list {
+    width: 150px;
+    overflow-y: auto;
+    border-right: 1px solid #ccc;
+  }
+  
+  .editor {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
   }
-  
-  .notepad {
-    width: 600px;
-    padding: 40px 30px 20px 30px;
+
+  .canvas {
     position: relative;
-    font-family: 'Indie Flower', cursive;
-    color: #333;
-    background-color: rgba(255, 255, 255, 0.9); /* Adjust for better readability */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff;
+    width: 80%; /* Use 80% of available width */
+    height: 80%; /* Use 80% of available height */
+    max-width: 1200px;
+    border: 1px solid #ccc;
+    overflow: hidden;
   }
   
-  .notepad::before {
-    content: '';
+  .logout-button {
     position: absolute;
-    top: -10px;
-    left: 0;
-    right: 0;
-    height: 20px;
-    background-image: repeating-linear-gradient(
-      to right,
-      transparent,
-      transparent 10px,
-      #333 10px,
-      #333 12px
-    );
-  }
-  
-  .notepad h2 {
-    margin-top: 0;
-    text-align: center;
-    color: #333;
-  }
-  
-  .notepad ul {
-    list-style: none;
-    padding-left: 0;
-  }
-  
-  .notepad li {
-    margin-bottom: 15px;
-    font-size: 1.5em;
-    position: relative;
-    padding-left: 35px;
-  }
-  
-  .notepad li::before {
-    content: '☐'; /* Empty checkbox */
-    position: absolute;
-    left: 0;
-    top: -5px;
-    font-size: 1.2em;
-  }
-  
-  .notepad button {
-    margin-top: 20px;
+    top: 10px; /* Moved to top */
+    right: 10px;
     padding: 10px 20px;
-    font-size: 1.2em;
-    background-color: #f0e68c;
-    color: #333;
-    border: none;
-    cursor: pointer;
-    font-family: 'Indie Flower', cursive;
-  }
-  
-  .notepad button:hover {
-    background-color: #e6d96c;
   }
   

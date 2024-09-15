@@ -1,0 +1,28 @@
+.asset-list {
+  position: relative;
+  width: 100px;
+  transition: width 0.3s;
+}
+
+.asset-list.collapsed {
+  width: 20px;
+}
+
+.collapse-button {
+  position: absolute;
+  top: 5px;
+  right: -15px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.asset-list.collapsed .collapse-button {
+  right: -15px;
+}
+
+.asset-list.collapsed h3,
+.asset-list.collapsed .asset-item,
+.asset-list.collapsed .upload-container {
+  display: none;
+}
