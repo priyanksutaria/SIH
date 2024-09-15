@@ -13,7 +13,7 @@ export function Window({ position, rotation }) {
       }
       else {
         ref.current.rotation.y = -Math.PI / 2; // Rotate 90 degrees around X-axis
-        ref.current.rotation.x = Math.PI / 2;
+        ref.current.rotation.z = -Math.PI / 2;
       }
     });
   

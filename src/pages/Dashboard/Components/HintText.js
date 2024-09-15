@@ -33,7 +33,7 @@ export function HintText({ hint, dialogue }) {
     const displayedDialogue = useTypewriter(dialogue || hint, 30); // Typewriter effect
   
     return (
-      <div style={{ position: 'absolute', bottom: '50px', left: '50%', transform: 'translateX(-50%)', color: 'white', fontSize: '20px' }}>
+      <div style={{ position: 'absolute', bottom: '50px', left: '60%', transform: 'translateX(-50%)', color: 'white', fontSize: '20px' }}>
         {displayedDialogue}
       </div>
     );

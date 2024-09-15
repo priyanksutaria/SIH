@@ -26,24 +26,15 @@ import Floor from './Components/OfficeFloor';
 import Sculpture from './Components/Sculpture';
 import { Section } from './Components/Sections';
 import ManagersOffice, { ManagerDoor } from './Components/ManagerOffice';
-import ConferenceTable from './Components/ConferenceTable';
 import PresentationScreen from './Components/PresentationScreen';
 import Chair from './Components/Chair';
 import WallClock, { TechTrolley } from './Components/WallClock';
 import WallShelf from './Components/WallShelf';
-import CafeteriaCounter from './Components/CafeteriaCounter';
-import FoodCounter from './Components/FoodCounter';
-import DiningTable from './Components/DiningTable';
-import VendingMachine from './Components/VendingMachine';
-import JuiceCounter from './Components/JuiceCounter';
-import CoffeeStation from './Components/CoffeeStation';
-import SoftDrinkDispenser from './Components/SoftDrinkDispenser';
 import { CafeteriaModel } from './Components/CafeteriaModel';
 import { MeetingRoom } from './Components/MeetingRoomModel';
 import { GlowingRing } from './Components/TaskIndicator';
 import { HintText } from './Components/HintText';
 import { DailyTaskScreen } from './Tasks/DailyTaskScreen';
-import { PendantLight } from './Components/PendantLights';
 
 const DbJobSimulation = () => {
   const [showCanvas, setShowCanvas] = useState(false);
@@ -51,19 +42,9 @@ const DbJobSimulation = () => {
   const [hint, setHint] = useState("Go to the reception desk!"); // Initial hint
   const [dialogue, setDialogue] = useState(null); // For character dialogues
   const [showIndicator, setShowIndicator] = useState(true); // Show path indicators
-
-  // const canvasRef = useRef();
-
-  // const handleFullscreen = () => {
-  //   const canvasContainer = canvasRef.current;
-  //   if (!document.fullscreenElement) {
-  //     canvasContainer.requestFullscreen().catch((err) => {
-  //       console.log(`Error attempting to enable full-screen mode: ${err.message}`);
-  //     });
-  //   } else {
-  //     document.exitFullscreen();
-  //   }
-  // };
+  const [showBlackScreen, setShowBlackScreen] = useState(false);
+  const [showDailyTaskScreen, setShowDailyTaskScreen] = useState(false);
+  const [showAccessPrompt, setShowAccessPrompt] = useState(false);
 
   // Define tasks with target positions and hints
   const tasks = [
@@ -77,18 +58,14 @@ const DbJobSimulation = () => {
       hint: "Proceed to the office door!"
     },
     {
-      position: [15.5, 0.1, 6],
+      position: [15.5, 0.1, 1],
       hint: "Go to Manager's cabin and meet him!",
       dialogue: "Oh, the Manager is quite busy right now with a meeting. You might want to head over to your desk and check the tasks assigned to you for today. I'll let the Manager know you stopped by."
     },
     {
       position: [14, 0.1, 14],
       hint: "Go to your desk and start work!"
-    },
-    {
-      position: [100, 0.1, 100],
-      hint: "Press 'E' to sit"
-    },
+    }
   ];
 
   const detectionRadius = 1.5;
@@ -123,8 +100,29 @@ const DbJobSimulation = () => {
     }
   };
 
+  // Handler when the player sits down
+  const handleSit = () => {
+    setShowBlackScreen(true); // Show black screen
+
+    // After a short delay, show the DailyTaskScreen
+    setTimeout(() => {
+      setShowDailyTaskScreen(true);
+    }, 1000); // Adjust delay as needed
+  };
+
+
+  const [playerReset, setPlayerReset] = useState(null);
+
+  const handleLogout = () => {
+    setShowDailyTaskScreen(false);
+    setShowBlackScreen(false);
+     if (playerReset) {
+      playerReset([14, 2, 16]); // Spawn near the desk
+    }
+  };
+
   return (
-    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ height: '85vh', width: '40vw', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       {!showCanvas ? (
         <button onClick={() => setShowCanvas(true)} style={{ padding: '10px 20px', fontSize: '16px' }}>
           Show 3D Environment
@@ -140,7 +138,13 @@ const DbJobSimulation = () => {
             <meshStandardMaterial attach="material" color="#ffffff" />
           </Plane>
 
-          <Player onMove={(position) => checkProximity(position)} detectionRadius={detectionRadius} onSit={DailyTaskScreen} />
+          <Player
+            onMove={(position) => checkProximity(position)}
+            detectionRadius={detectionRadius}
+            onSit={handleSit}
+            setPlayerReset={setPlayerReset}
+            onNearDeskChange={setShowAccessPrompt}
+          />
           <Floor position={[0, 0.0001, 0]} image="/assets/floor.jpg" />
           {/* Room Walls */}
           <Walls />
@@ -249,11 +253,11 @@ const DbJobSimulation = () => {
           <Sculpture position={[13, 0, 24]} />
           <Sculpture position={[20, 0, 24]} />
 
-          <ManagersOffice position={[20.5, 0, 4.5]} />
-          <ManagerDoor position={[16.4, 0, 6]} rotation={[0, -Math.PI / 2, 0]} />
-          <ManagerDoor position={[16.6, 0, 6]} rotation={[0, -Math.PI / 2, 0]} />
+          <ManagersOffice position={[20.5, 0, -0.5]} />
+          <ManagerDoor position={[16.4, 0, 1]} rotation={[0, -Math.PI / 2, 0]} />
+          <ManagerDoor position={[16.6, 0, 1]} rotation={[0, -Math.PI / 2, 0]} />
           <Text
-            position={[16.3, 3.5, 6]}
+            position={[16.3, 3.5, 1]}
             rotation={[0, -Math.PI / 2, 0]}
             fontSize={0.3}
             color="#000000"
@@ -262,9 +266,10 @@ const DbJobSimulation = () => {
           >
             MANAGER
           </Text>
-          <PottedPlant position={[16, 0, 1]} />
-          <PottedPlant position={[16, 0, 8]} />
-          <Painting position={[16.3, 4, 3]} image="/assets/hitler.jpg" rotation={[0, -Math.PI / 2, 0]} />
+          <PottedPlant position={[16, 0, -4]} />
+          <PottedPlant position={[16, 0, 3]} />
+          <Painting position={[16.3, 4, -2]} image="/assets/gandhiji.jpg" rotation={[0, -Math.PI / 2, 0]} />
+          <Window position={[24.5, 4, 5.5]} rotation={false} />
 
           {/* Conference Room */}
           <ManagerDoor position={[9.3, 0, -4.4]} rotation={[0, 0, 0]} />
@@ -292,7 +297,7 @@ const DbJobSimulation = () => {
           <Suspense fallback={null}>
             <MeetingRoom modelUrl="/model/meeting.glb" position={[26.3, 0, 3.6]} scale={[4, 2, 3]} />
           </Suspense>
-          <WallClock position={[22, 8, -24.5]} rotation={[0, 0, 0]} />
+          <WallClock position={[22, 7, -24.5]} rotation={[0, 0, 0]} />
           <Chair position={[13.5, 0, -13]} rotation={[0, Math.PI, 0]} />
           <Chair position={[10.5, 0, -13]} rotation={[0, Math.PI, 0]} />
           <Chair position={[7.5, 0, -13]} rotation={[0, Math.PI, 0]} />
@@ -329,6 +334,41 @@ const DbJobSimulation = () => {
 
         </Canvas>
 
+      )}
+
+       {/* Render the access prompt */}
+       {showAccessPrompt && !showDailyTaskScreen && !showBlackScreen && (
+        <div style={{
+          position: 'absolute',
+          top: '60%',
+          left: '60%',
+          transform: 'translate(-50%, -50%)',
+          color: 'white',
+          fontSize: '24px',
+          textShadow: '1px 1px 2px black',
+          zIndex: 10, // Ensure it's above the canvas
+        }}>
+          Press 'E' to access PC
+        </div>
+      )}
+
+      {/* Render the black screen and DailyTaskScreen */}
+      {showBlackScreen && (
+        <div
+          style={{
+            position: 'absolute',
+            width: '100vw',
+            height: '85vh',
+            
+            backgroundColor: '#000',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            zIndex: 10,
+          }}
+        >
+          {showDailyTaskScreen && <DailyTaskScreen onLogout={handleLogout} />}
+        </div>
       )}
       <HintText hint={hint} dialogue={dialogue} />
     </div>

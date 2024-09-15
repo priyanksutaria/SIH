@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Box, Card, CardContent } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import './AuthPage.css';
 
 const AuthPage = () => {
@@ -12,6 +13,7 @@ const AuthPage = () => {
     confirmPassword: '',
   });
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();  
 
   const toggleForm = () => {
     setIsSignup(!isSignup);
@@ -41,12 +43,39 @@ const AuthPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log('Form Submitted', formData);
+      const url = 'http://localhost:5000/RegisterUser';
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        username: formData.username,
+        password: formData.password,
+      };
+
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          alert(`User registered successfully with ID: ${result.id}`);
+          navigate('/dashboard');  // Navigate to dashboard after successful registration
+        } else {
+          alert('Error occurred during registration');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
     }
   };
+
 
   return (
     <div className="auth-container">

@@ -1,21 +1,35 @@
-import { Html } from '@react-three/drei';
-import React from 'react';
+import React, { useState } from 'react';
+import desktopBackground from './desktop-background.jpg';
+import notepadBackground from './notepad-background.jpg';
 
-export function DailyTaskScreen() {
+import './DailyTaskScreen.css';
+
+export function DailyTaskScreen({ onLogout }) {
+  const screenStyle = {
+    backgroundImage: `url(${desktopBackground})`,
+    backgroundSize: '95% 90%',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+  };
+
+  const notepadStyle = {
+    backgroundImage: `url(${notepadBackground})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+  };
+
   return (
-    <Html style={{
-      color: 'white',
-      textAlign: 'center',
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      fontSize: '32px'
-    }}>
-      Today's Task: <br />
-      - Complete your project report <br />
-      - Attend the team meeting at 3 PM <br />
-      - Submit timesheet by end of the day
-    </Html>
+    <div className="daily-task-screen" style={screenStyle}>
+      <div className="notepad" style={notepadStyle}>
+        <h2>Today's Tasks:</h2>
+        <ul>
+          <li>Complete your project report</li>
+          <li>Attend the team meeting at 3 PM</li>
+          <li>Submit timesheet by end of the day</li>
+        </ul>
+        <button onClick={onLogout}>Logout</button>
+      </div>
+    </div>
   );
 }
