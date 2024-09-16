@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './BigFiveAssesment.css';
 import SpatialQuestion from './SpatialQuestion';
 import q1Image from '../../assets/images/q1.png'; // Add the image imports
@@ -6,6 +6,7 @@ import q2Image from '../../assets/images/q2.png';
 import q3Image from '../../assets/images/q3.png';
 import q4Image from '../../assets/images/q4.png';
 import q5Image from '../../assets/images/q5.png';
+import { AssessmentContext } from '../../context/AssessmentContext';
 
 const questions = [
   { id: 1, text: "Which figure is a rotation of the object?", image: q1Image },
@@ -51,6 +52,7 @@ const answerOptions = {
 const SpatialAssesment = ({ onComplete }) => {
   const [answers, setAnswers] = useState({});
   const [currentPage, setCurrentPage] = useState(0);
+  const {showcareer, setshowcareer} = useContext(AssessmentContext);
 
   const handleAnswerChange = (questionId, answer) => {
     setAnswers((prevAnswers) => ({
@@ -67,6 +69,7 @@ const SpatialAssesment = ({ onComplete }) => {
 
   const handleSubmit = () => {
     console.log("User answers:", answers);
+    setshowcareer(true);
     onComplete(); // Call onComplete when the assessment is done
   };
 

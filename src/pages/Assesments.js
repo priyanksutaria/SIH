@@ -38,25 +38,31 @@ const Assesments = () => {
                 <div className="step_box step2">
                   <div className="step_number">2</div>
                   <div className="step_content">
-                    <h3>Numerical Assessment</h3>
+                    <h3>Numerical Aptitude</h3>
                   </div>
                 </div>
                 <div className="step_box step3">
                   <div className="step_number">3</div>
                   <div className="step_content">
-                    <h3>Spatial Assessment</h3>
+                    <h3>Spatial Aptitude</h3>
                   </div>
                 </div>
                 <div className="step_box step4">
                   <div className="step_number">4</div>
                   <div className="step_content">
-                    <h3>Perceptual Assessment</h3>
+                    <h3>Perceptual Aptitude</h3>
                   </div>
                 </div>
                 <div className="step_box step5">
                   <div className="step_number">5</div>
                   <div className="step_content">
                     <h3>Verbal Reasoning</h3>
+                  </div>
+                </div>
+                <div className="step_box step6">
+                  <div className="step_number">6</div>
+                  <div className="step_content">
+                    <h3>Abstract Reasoning</h3>
                   </div>
                 </div>
               </div>

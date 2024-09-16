@@ -15,7 +15,7 @@ import SpatialAssesment from './SpatialAssesment'; // Import the Spatial Assessm
 const steps = [
   'Big Five Personality Assessment',
   'Numerical Assessment',
-  'Verbal Reasoning Assessment',
+  'Verbal & Abstract Reasoning',
   'Perceptual Assessment',
   'Spatial Assessment',
 ];

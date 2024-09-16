@@ -70,7 +70,7 @@ const VerbalReasoning = () => {
     return (
       <div className="video-recorder-container">
         <div className="video-recorder-wrapper">
-          <h3>Verbal Reasoning Assessment</h3>
+          <h3>Verbal & Abstract Reasoning</h3>
           <h5 className="video-recorder-title">
             Record your answer: "What is the importance of Teamwork?"
           </h5>

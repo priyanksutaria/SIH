@@ -13,7 +13,7 @@ const questions = [
   { id: 7, text: "I see myself as someone who tends to find fault with others" },
   { id: 8, text: "I see myself as someone who does a thorough job" },
   { id: 9, text: "I see myself as someone who gets nervous easily" },
-  // { id: 10, text: "I see myself as someone who has an active imagination" },
+  { id: 10, text: "I see myself as someone who has an active imagination" },
   // { id: 11, text: "I see myself as someone who is talkative" },
   // { id: 12, text: "I see myself as someone who can be cold and aloof" },
   // { id: 13, text: "I see myself as someone who perseveres until the task is finished" },

@@ -20,6 +20,7 @@ export const AssessmentProvider = ({ children }) => {
 
     // State to store the assessment questions and their scores
     const [questions, setQuestions] = useState(initialQuestions);
+    const [showcareer, setshowcareer] = useState(false);
 
     // Function to update the score of a particular question
     const updateScore = (questionId, response) => {
@@ -53,7 +54,7 @@ export const AssessmentProvider = ({ children }) => {
     };
 
     return (
-        <AssessmentContext.Provider value={{ questions, updateScore }}>
+        <AssessmentContext.Provider value={{ questions, updateScore, showcareer, setshowcareer }}>
             {children}
         </AssessmentContext.Provider>
     );

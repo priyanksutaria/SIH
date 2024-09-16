@@ -38,6 +38,7 @@ import { DailyTaskScreen } from './Tasks/DailyTaskScreen';
 
 const DbJobSimulation = () => {
   const [showCanvas, setShowCanvas] = useState(false);
+  const [showbackground, setShowBackground] = useState(true);
   const [currentTask, setCurrentTask] = useState(0); // Track current task
   const [hint, setHint] = useState("Go to the reception desk!"); // Initial hint
   const [dialogue, setDialogue] = useState(null); // For character dialogues
@@ -45,7 +46,7 @@ const DbJobSimulation = () => {
   const [showBlackScreen, setShowBlackScreen] = useState(false);
   const [showDailyTaskScreen, setShowDailyTaskScreen] = useState(false);
   const [showAccessPrompt, setShowAccessPrompt] = useState(false);
-
+  const [isPointer, setIsPointer] = useState(true);
   // Define tasks with target positions and hints
   const tasks = [
     {
@@ -102,7 +103,8 @@ const DbJobSimulation = () => {
 
   // Handler when the player sits down
   const handleSit = () => {
-    setShowBlackScreen(true); // Show black screen
+    setShowBlackScreen(true);
+    setIsPointer(false);
 
     // After a short delay, show the DailyTaskScreen
     setTimeout(() => {
@@ -116,22 +118,25 @@ const DbJobSimulation = () => {
   const handleLogout = () => {
     setShowDailyTaskScreen(false);
     setShowBlackScreen(false);
-     if (playerReset) {
+    setIsPointer(true);
+    if (playerReset) {
       playerReset([14, 2, 16]); // Spawn near the desk
     }
   };
 
   return (
-    <div style={{ height: '85vh', width: '40vw', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+    <div style={{ height: '85vh', width: '100vw', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       {!showCanvas ? (
-        <button onClick={() => setShowCanvas(true)} style={{ padding: '10px 20px', fontSize: '16px' }}>
-          Show 3D Environment
+        <button onClick={() => setShowCanvas(true)} style={{ fontSize: '16px', width: '200px', marginLeft: '600px', padding: '10px 10px' }}>
+          Start 3D Job Simulation
         </button>
       ) : (
         <Canvas camera={{ position: [0, 1, 5], fov: 75 }} style={{ height: '100vh', width: '100vw' }}>
           <ambientLight intensity={0.5} />
           <directionalLight position={[10, 10, 5]} intensity={2} />
-          <PointerLockControls />
+          {isPointer && <PointerLockControls
+            pointerSpeed={1.0}
+          />}
 
           {/* Floor */}
           <Plane args={[50, 50]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
@@ -336,8 +341,8 @@ const DbJobSimulation = () => {
 
       )}
 
-       {/* Render the access prompt */}
-       {showAccessPrompt && !showDailyTaskScreen && !showBlackScreen && (
+      {/* Render the access prompt */}
+      {showAccessPrompt && !showDailyTaskScreen && !showBlackScreen && (
         <div style={{
           position: 'absolute',
           top: '60%',
@@ -359,12 +364,13 @@ const DbJobSimulation = () => {
             position: 'absolute',
             width: '100vw',
             height: '85vh',
-            
+
             backgroundColor: '#000',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             zIndex: 10,
+            cursor: 'auto',
           }}
         >
           {showDailyTaskScreen && <DailyTaskScreen onLogout={handleLogout} />}

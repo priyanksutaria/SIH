@@ -5,7 +5,7 @@ import { SketchPicker } from 'react-color';
 import Select from 'react-select';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import './Toolbar.css';
+import './ToolBar.css';
 import { FaBold, FaItalic, FaUnderline, FaUndo, FaRedo, FaAlignLeft, FaAlignCenter, FaAlignRight, FaFont, FaPaintBrush, FaDownload, FaSquare, FaCircle, FaSlash, FaLayerGroup, FaTextHeight } from 'react-icons/fa';
 
 const Toolbar = ({

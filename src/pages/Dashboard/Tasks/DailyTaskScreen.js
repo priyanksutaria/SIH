@@ -3,8 +3,12 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import AssetList from './AssetList';
 import DesignCanvas from './DesignCanvas';
-import Toolbar from './Toolbar';
+import Toolbar from './ToolBar';
+import desktopBackground from './desktop-background.jpg';
+import notepadBackground from './notepad-background.jpg';
+import task from './task.png';
 import './DailyTaskScreen.css';
+import { FaWindowClose } from 'react-icons/fa'; // Close button icon
 
 // Fonts for the select box
 const fonts = [
@@ -84,7 +88,7 @@ export function DailyTaskScreen({ onLogout }) {
   const [state, dispatch] = useReducer(canvasReducer, initialState);
   const [selectedItem, setSelectedItem] = useState(null);
 
-  // Shared state variables
+  // Shared state variables for the canvas
   const [color, setColor] = useState('#000');
   const [selectedFont, setSelectedFont] = useState(fonts[0]);
   const [bold, setBold] = useState(false);
@@ -97,70 +101,133 @@ export function DailyTaskScreen({ onLogout }) {
   const [history, setHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
 
+  // Track which screen is active (notepad or design canvas)
+  const [showDesignCanvas, setShowDesignCanvas] = useState(false);
+
   // Update history whenever state.items changes
   useEffect(() => {
     const newHistory = history.slice(0, historyIndex + 1);
     newHistory.push(state.items);
     setHistory(newHistory);
     setHistoryIndex(newHistory.length - 1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.items]);
+  }, [state.items, history, historyIndex]);
+
+  // Notepad screen styles
+  const screenStyle = {
+    backgroundImage: `url(${desktopBackground})`,
+    backgroundSize: '95% 90%',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+  };
+
+  const notepadStyle = {
+    backgroundImage: `url(${notepadBackground})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+  };
 
   return (
     <div className="daily-task-screen">
-      <DndProvider backend={HTML5Backend}>
-        <div className="design-app">
-          <h1>Design an Ad Banner</h1>
-          {/* Toolbar at the top */}
-          <Toolbar
-            state={state}
-            dispatch={dispatch}
-            selectedItem={selectedItem}
-            setSelectedItem={setSelectedItem}
-            color={color}
-            setColor={setColor}
-            selectedFont={selectedFont}
-            setSelectedFont={setSelectedFont}
-            bold={bold}
-            setBold={setBold}
-            italic={italic}
-            setItalic={setItalic}
-            underline={underline}
-            setUnderline={setUnderline}
-            textAlign={textAlign}
-            setTextAlign={setTextAlign}
-            textShadow={textShadow}
-            setTextShadow={setTextShadow}
-            lineHeight={lineHeight}
-            setLineHeight={setLineHeight}
-            history={history}
-            historyIndex={historyIndex}
-            setHistoryIndex={setHistoryIndex}
-            fonts={fonts}
-          />
-          <div className="main">
-            <AssetList />
-            <DesignCanvas
-              state={state}
-              dispatch={dispatch}
-              selectedItem={selectedItem}
-              setSelectedItem={setSelectedItem}
-              color={color}
-              selectedFont={selectedFont}
-              bold={bold}
-              italic={italic}
-              underline={underline}
-              textAlign={textAlign}
-              textShadow={textShadow}
-              lineHeight={lineHeight}
-              fonts={fonts}
-            />
+      {/* Initial Notepad Screen */}
+      {!showDesignCanvas ? (
+        <div className="notepad-screen" style={screenStyle}>
+          <div className="notepad" style={notepadStyle}>
+            <h2>Today's Tasks:</h2>
+            <ul>
+              <li>Complete the Design using the Design App</li>
+              <li>Attend the team meeting at 3:30 PM</li>
+              <li>Submit the Design by end of the day</li>
+            </ul>
+            <button onClick={onLogout}>Logout</button>
+          </div>
+
+          {/* Desktop icon to switch to design canvas */}
+          <div className="desktop-icons">
+            <div
+              className="desktop-icon"
+              style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}
+              onClick={() => setShowDesignCanvas(true)} // Switch to design canvas on click
+            >
+              <img src={task} alt="Paint Icon" />
+              <span style={{
+                color: 'white',
+                fontSize: '11px',
+                borderRadius: '2px',
+                textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)',
+                display: 'inline-block',
+                textAlign: 'center',
+                maxWidth: '100%',
+                wordWrap: 'break-word'
+              }}>
+                Design App
+              </span>
+            </div>
           </div>
         </div>
-      </DndProvider>
-      <button onClick={onLogout} className="logout-button">
-        Logout
-      </button>
+      ) : (
+        // Design Canvas Screen
+        <div className="design-canvas-screen">
+          <DndProvider backend={HTML5Backend}>
+            <div className="design-app">
+              <h1>Design an Ad Banner</h1>
+              {/* Toolbar at the top */}
+              <Toolbar
+                state={state}
+                dispatch={dispatch}
+                selectedItem={selectedItem}
+                setSelectedItem={setSelectedItem}
+                color={color}
+                setColor={setColor}
+                selectedFont={selectedFont}
+                setSelectedFont={setSelectedFont}
+                bold={bold}
+                setBold={setBold}
+                italic={italic}
+                setItalic={setItalic}
+                underline={underline}
+                setUnderline={setUnderline}
+                textAlign={textAlign}
+                setTextAlign={setTextAlign}
+                textShadow={textShadow}
+                setTextShadow={setTextShadow}
+                lineHeight={lineHeight}
+                setLineHeight={setLineHeight}
+                history={history}
+                historyIndex={historyIndex}
+                setHistoryIndex={setHistoryIndex}
+                fonts={fonts}
+              />
+              <div className="main">
+                <AssetList />
+                <DesignCanvas
+                  state={state}
+                  dispatch={dispatch}
+                  selectedItem={selectedItem}
+                  setSelectedItem={setSelectedItem}
+                  color={color}
+                  selectedFont={selectedFont}
+                  bold={bold}
+                  italic={italic}
+                  underline={underline}
+                  textAlign={textAlign}
+                  textShadow={textShadow}
+                  lineHeight={lineHeight}
+                  fonts={fonts}
+                />
+              </div>
+            </div>
+          </DndProvider>
+
+          {/* Close button to go back to the notepad screen */}
+          <button
+            className="close-button"
+            onClick={() => setShowDesignCanvas(false)} // Switch back to the notepad
+          >
+            <FaWindowClose size={24} />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
