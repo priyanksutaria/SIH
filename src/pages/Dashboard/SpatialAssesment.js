@@ -52,7 +52,7 @@ const answerOptions = {
 const SpatialAssesment = ({ onComplete }) => {
   const [answers, setAnswers] = useState({});
   const [currentPage, setCurrentPage] = useState(0);
-  const {showcareer, setshowcareer} = useContext(AssessmentContext);
+  const {aptitude, setaptitude} = useContext(AssessmentContext);
 
   const handleAnswerChange = (questionId, answer) => {
     setAnswers((prevAnswers) => ({
@@ -69,7 +69,7 @@ const SpatialAssesment = ({ onComplete }) => {
 
   const handleSubmit = () => {
     console.log("User answers:", answers);
-    setshowcareer(true);
+    setaptitude(true);
     onComplete(); // Call onComplete when the assessment is done
   };
 
